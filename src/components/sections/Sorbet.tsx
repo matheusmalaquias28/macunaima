@@ -1,8 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import Media from "@/components/ui/Media";
 import Button from "@/components/ui/Button";
+import { useLenis } from "@/components/motion/MotionProvider";
 
 const flavors: { name: string; bg: string; ink: string; a: string; b: string; src?: string }[] = [
   { name: "Coco", bg: "#EFE6D8", ink: "#22011a", a: "#ffffff", b: "#d9c7ae", src: "/sorbet/coco.jpg" },
@@ -13,17 +17,55 @@ const flavors: { name: string; bg: string; ink: string; a: string; b: string; sr
 ];
 
 export default function Sorbet() {
-  const [active, setActive] = useState(3);
+  const root = useRef<HTMLElement>(null);
+  const pin = useRef<ScrollTrigger | null>(null);
+  const lenis = useLenis();
+  const [active, setActive] = useState(0);
   const f = flavors[active];
+  const last = flavors.length - 1;
+
+  // Desktop: a seção trava e o scroll percorre os sabores
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
+        pin.current = ScrollTrigger.create({
+          trigger: root.current,
+          start: "top top",
+          end: () => `+=${window.innerHeight * 0.7 * last}`,
+          pin: true,
+          invalidateOnRefresh: true,
+          snap: { snapTo: 1 / last, directional: false, duration: { min: 0.2, max: 0.6 }, ease: "power2.inOut", delay: 0.08 },
+          onUpdate: (self) => setActive(Math.round(self.progress * last)),
+        });
+        return () => {
+          pin.current = null;
+        };
+      });
+      return () => mm.revert();
+    },
+    { scope: root },
+  );
+
+  // Com a seção travada, escolher um sabor rola até a posição dele; sem trava, troca direto
+  const select = (i: number, fromHover = false) => {
+    const st = pin.current;
+    if (!st) return setActive(i);
+    if (fromHover) return;
+    const y = st.start + (st.end - st.start) * (i / last);
+    if (lenis.current) lenis.current.scrollTo(y, { duration: 1 });
+    else window.scrollTo({ top: y, behavior: "smooth" });
+  };
 
   return (
     <section
+      ref={root}
       id="sorbet"
       aria-labelledby="sorbet-title"
-      className="relative overflow-hidden py-24 transition-[background-color,color] duration-700 ease-[var(--ease-expo)] md:py-36"
+      className="relative overflow-hidden py-24 transition-[background-color,color] duration-700 ease-[var(--ease-expo)] md:py-36 lg:flex lg:h-[100svh] lg:min-h-[680px] lg:items-center lg:py-0"
       style={{ backgroundColor: f.bg, color: f.ink }}
     >
-      <div className="gutter grid gap-16 lg:grid-cols-12 lg:gap-10">
+      <div className="gutter grid w-full gap-16 lg:grid-cols-12 lg:items-center lg:gap-10 lg:pt-12">
         <div className="flex flex-col lg:col-span-6">
           <p className="eyebrow mb-6 opacity-70" data-reveal="up">
             Conheça também a Linha Sorbet
@@ -31,12 +73,12 @@ export default function Sorbet() {
           <h2 id="sorbet-title" className="t-display xl:text-[clamp(2.2rem,4.6vw,5.5rem)]" data-split>
             Mais possibilidades para o seu portfólio.
           </h2>
-          <p className="t-lead mt-8 max-w-lg opacity-80" data-reveal="up">
+          <p className="t-lead mt-8 max-w-lg opacity-80 lg:mt-6" data-reveal="up">
             Além da linha de açaí, a Macunaíma possui uma linha de Sorbet desenvolvida com frutas selecionadas e alta
             concentração de polpa.
           </p>
 
-          <div className="mt-12 grid gap-10 sm:grid-cols-[1fr_auto]" data-reveal="up">
+          <div className="mt-12 grid gap-10 sm:grid-cols-[1fr_auto] lg:mt-10" data-reveal="up">
             <div>
               <p className="eyebrow mb-4 opacity-60">5 sabores</p>
               <ul className="flex flex-wrap gap-2" role="list">
@@ -44,9 +86,8 @@ export default function Sorbet() {
                   <li key={fl.name}>
                     <button
                       type="button"
-                      onMouseEnter={() => setActive(i)}
-                      onFocus={() => setActive(i)}
-                      onClick={() => setActive(i)}
+                      onMouseEnter={() => select(i, true)}
+                      onClick={() => select(i)}
                       aria-pressed={active === i}
                       className={`flex items-center gap-2.5 rounded-full border px-4 py-2.5 text-[0.95rem] font-semibold transition-all duration-500 ${
                         active === i ? "border-current bg-current/10" : "border-current/25 hover:border-current"
@@ -65,7 +106,7 @@ export default function Sorbet() {
             </div>
           </div>
 
-          <div className="mt-12" data-reveal="up">
+          <div className="mt-12 lg:mt-10" data-reveal="up">
             <Button href="/linha-sorbet" variant={f.ink === "#ffffff" ? "light" : "acai"} size="lg">
               Conheça a linha Sorbet
             </Button>
@@ -73,7 +114,7 @@ export default function Sorbet() {
         </div>
 
         <div className="relative lg:col-span-6">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] md:rounded-[2.5rem] lg:aspect-[1/1]" data-reveal="up">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] md:rounded-[2.5rem] lg:ml-auto lg:h-[min(84svh,860px)] lg:w-auto lg:max-w-full" data-reveal="up">
             {flavors.map((fl, i) => (
               <div
                 key={fl.name}
@@ -99,6 +140,14 @@ export default function Sorbet() {
             >
               {f.name}
             </p>
+            <ol className="absolute bottom-6 right-6 hidden gap-1.5 lg:flex" aria-hidden="true">
+              {flavors.map((fl, i) => (
+                <li
+                  key={fl.name}
+                  className={`h-1 rounded-full bg-white transition-all duration-500 ${active === i ? "w-8 opacity-100" : "w-3 opacity-50"}`}
+                />
+              ))}
+            </ol>
           </div>
         </div>
       </div>

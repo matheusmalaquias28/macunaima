@@ -33,7 +33,10 @@ export default function Relationships() {
           </div>
           <div className="absolute bottom-0 left-0 w-[58%] -rotate-[4deg]" data-reveal="up">
             <Media
-              label="Aperto de mãos entre parceiros diante dos paletes"
+              src="/relacionamentos/aperto-de-maos.png"
+              alt="Aperto de mãos ao pôr do sol com a floresta e o rio ao fundo"
+              sizes="(min-width: 1024px) 28vw, 58vw"
+              label="Aperto de mãos entre parceiros"
               tone="deep"
               className="group aspect-[4/5] rounded-[1.5rem] border-[10px] border-white shadow-[0_40px_80px_-30px_rgba(34,1,26,0.5)]"
               reveal={false}

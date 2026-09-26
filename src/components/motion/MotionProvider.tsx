@@ -9,6 +9,8 @@ import { SplitText } from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger, SplitText, useGSAP);
+// Evita recalcular tudo quando a barra de endereço do celular aparece/some (causava travadas)
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 const LenisContext = createContext<RefObject<Lenis | null>>({ current: null });
 export const useLenis = () => useContext(LenisContext);
@@ -87,20 +89,6 @@ export default function MotionProvider({ children }: { children: React.ReactNode
           if (inner) tl.fromTo(inner, { scale: 1.3 }, { scale: 1, duration: 1.8, ease: "expo.out" }, 0.1);
         });
 
-        // Parallax
-        gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
-          const amount = parseFloat(el.dataset.parallax || "12");
-          gsap.fromTo(
-            el,
-            { yPercent: -amount },
-            {
-              yPercent: amount,
-              ease: "none",
-              scrollTrigger: { trigger: el.parentElement, start: "top bottom", end: "bottom top", scrub: true },
-            },
-          );
-        });
-
         // Contadores
         gsap.utils.toArray<HTMLElement>("[data-count]").forEach((el) => {
           const target = parseFloat(el.dataset.count || "0");
@@ -116,6 +104,23 @@ export default function MotionProvider({ children }: { children: React.ReactNode
               el.textContent = fmt(obj.v);
             },
           });
+        });
+      });
+
+      // Parallax só a partir do tablet: no celular o scroll é nativo e o scrub em imagens grandes engasga
+      mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+        // Parallax
+        gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
+          const amount = parseFloat(el.dataset.parallax || "12");
+          gsap.fromTo(
+            el,
+            { yPercent: -amount },
+            {
+              yPercent: amount,
+              ease: "none",
+              scrollTrigger: { trigger: el.parentElement, start: "top bottom", end: "bottom top", scrub: true },
+            },
+          );
         });
       });
 
