@@ -1,0 +1,320 @@
+@import "tailwindcss";
+
+@theme {
+  --color-acai: #4a0234;
+  --color-acai-ink: #22011a;
+  --color-acai-soft: #6d1650;
+  --color-acai-mist: #b58aa6;
+  --color-folha: #96ca65;
+  --color-folha-ink: #3f6a1f;
+  --color-nevoa: #f6f0f4;
+
+  --font-display: var(--font-unbounded), "Arial Black", sans-serif;
+  --font-sans: var(--font-figtree), system-ui, sans-serif;
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-quart: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* ---------- Base ---------- */
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+.lenis [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+/* Nada deve gerar rolagem lateral; `clip` (e não `hidden`) mantém sticky e pin funcionando */
+html,
+body {
+  overflow-x: clip;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  background: #fff;
+  color: var(--color-acai-ink);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-folha);
+  color: var(--color-acai-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-folha);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Utilitários ---------- */
+
+@utility gutter {
+  padding-inline: clamp(1.25rem, 4vw, 4.5rem);
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+@utility t-mega {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 7.4vw, 11rem);
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+}
+
+@utility t-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.2rem, 5.4vw, 6.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+@utility t-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 3.4vw, 3.75rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+@utility t-lead {
+  font-size: clamp(1.05rem, 1.35vw, 1.4rem);
+  line-height: 1.5;
+}
+
+/* Linhas mascaradas para o SplitText */
+.split-line {
+  overflow: clip;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+/* ---------- Padrão geométrico de fundo ---------- */
+
+/* Quadrados divididos pelas diagonais em 4 triângulos hachurados:
+   hachura vertical em cima/embaixo, horizontal nas laterais.
+   Os vãos brancos (diagonais e bordas do quadrado) são recortados da máscara. */
+.bg-padrao {
+  --padrao-tile: clamp(110px, 11vw, 170px);
+  --padrao-cor: #f1edec;
+  --padrao-traco: 3px;
+  --padrao-passo: 10px;
+  --padrao-vao: 6px;
+  position: relative;
+  isolation: isolate;
+  background-color: #fff;
+}
+.bg-padrao::before,
+.bg-padrao::after {
+  --vao: calc(var(--padrao-vao) / 2);
+  --diag-a: linear-gradient(45deg, transparent calc(50% - var(--vao)), #000 0 calc(50% + var(--vao)), transparent 0);
+  --diag-b: linear-gradient(-45deg, transparent calc(50% - var(--vao)), #000 0 calc(50% + var(--vao)), transparent 0);
+  --borda-h: linear-gradient(#000 0 var(--vao), transparent 0 calc(100% - var(--vao)), #000 0);
+  --borda-v: linear-gradient(90deg, #000 0 var(--vao), transparent 0 calc(100% - var(--vao)), #000 0);
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  -webkit-mask-image: var(--tri), var(--diag-a), var(--diag-b), var(--borda-h), var(--borda-v);
+  mask-image: var(--tri), var(--diag-a), var(--diag-b), var(--borda-h), var(--borda-v);
+  -webkit-mask-composite: source-out, source-over, source-over, source-over;
+  mask-composite: subtract, add, add, add;
+  -webkit-mask-size: var(--padrao-tile) var(--padrao-tile);
+  mask-size: var(--padrao-tile) var(--padrao-tile);
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+}
+/* Triângulos de cima e de baixo */
+.bg-padrao::before {
+  --tri: conic-gradient(from -45deg, #000 0 90deg, transparent 0 180deg, #000 0 270deg, transparent 0);
+  background: repeating-linear-gradient(
+    90deg,
+    var(--padrao-cor) 0 var(--padrao-traco),
+    transparent var(--padrao-traco) var(--padrao-passo)
+  );
+}
+/* Triângulos laterais */
+.bg-padrao::after {
+  --tri: conic-gradient(from 45deg, #000 0 90deg, transparent 0 180deg, #000 0 270deg, transparent 0);
+  background: repeating-linear-gradient(
+    180deg,
+    var(--padrao-cor) 0 var(--padrao-traco),
+    transparent var(--padrao-traco) var(--padrao-passo)
+  );
+}
+
+/* ---------- Placeholder de mídia ---------- */
+
+.media-ph {
+  background:
+    radial-gradient(120% 90% at 20% 10%, var(--ph-a) 0%, transparent 60%),
+    radial-gradient(90% 80% at 85% 90%, var(--ph-b) 0%, transparent 65%),
+    var(--ph-c);
+}
+.media-ph::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.22;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  pointer-events: none;
+}
+
+.media-tone-acai {
+  --ph-a: #7a1d5c;
+  --ph-b: #2d0322;
+  --ph-c: #4a0234;
+}
+.media-tone-deep {
+  --ph-a: #4a0234;
+  --ph-b: #120010;
+  --ph-c: #22011a;
+}
+.media-tone-folha {
+  --ph-a: #c3e39f;
+  --ph-b: #5f8f38;
+  --ph-c: #96ca65;
+}
+.media-tone-nevoa {
+  --ph-a: #ffffff;
+  --ph-b: #dcc6d4;
+  --ph-c: #efe4eb;
+}
+.media-tone-rio {
+  --ph-a: #6f7d45;
+  --ph-b: #1c1a10;
+  --ph-c: #3a3a22;
+}
+
+/* Zoom suave no hover (pai com classe group) */
+.media-zoom {
+  transition: transform 1.2s var(--ease-expo);
+}
+.group:hover .media-zoom {
+  transform: scale(1.06);
+}
+
+/* ---------- Botão com texto rolando ---------- */
+
+.btn-roll {
+  display: inline-grid;
+  overflow: clip;
+}
+.btn-roll > span {
+  grid-area: 1 / 1;
+  transition: transform 0.6s var(--ease-expo);
+}
+.btn-roll > span:last-child {
+  transform: translateY(110%);
+}
+.group:hover .btn-roll > span:first-child,
+.group:focus-visible .btn-roll > span:first-child {
+  transform: translateY(-110%);
+}
+.group:hover .btn-roll > span:last-child,
+.group:focus-visible .btn-roll > span:last-child {
+  transform: translateY(0);
+}
+
+/* ---------- Marquee ---------- */
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: marquee var(--marquee-duration, 40s) linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes scrollcue {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(200%);
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin-slow {
+  animation: spin-slow 22s linear infinite;
+}
+
+/* ---------- Logo como máscara (herda currentColor) ---------- */
+
+.logo-mask {
+  display: block;
+  background-color: currentColor;
+  -webkit-mask: url("/brand/logo-macunaima.svg") no-repeat center / contain;
+  mask: url("/brand/logo-macunaima.svg") no-repeat center / contain;
+  aspect-ratio: 2300 / 430;
+}
+
+/* Estado inicial dos elementos animados: só esconde quando o JS está ativo */
+html.js [data-reveal] {
+  opacity: 0;
+}
+html.js [data-split] {
+  opacity: 0;
+}
+html.js [data-reveal="img"] {
+  opacity: 1;
+  clip-path: inset(100% 0 0 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-reveal],
+  html.js [data-split] {
+    opacity: 1;
+    clip-path: none;
+  }
+  .marquee-track,
+  .spin-slow {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html.preloader-seen [data-preloader] {
+  display: none;
+}
