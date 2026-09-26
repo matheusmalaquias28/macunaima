@@ -49,8 +49,14 @@ export default function Footer() {
               {col.title === "Comercial" && (
                 <dl className="mt-8 flex flex-col gap-4 text-sm text-white/60">
                   <div>
-                    <dt className="eyebrow mb-1 text-white/40">Telefone</dt>
-                    <dd>{contact.phone}</dd>
+                    <dt className="eyebrow mb-1 text-white/40">Telefones</dt>
+                    {contact.phones.map((tel) => (
+                      <dd key={tel}>
+                        <a href={`tel:+55${tel.replace(/\D/g, "")}`} className="transition-colors hover:text-white">
+                          {tel}
+                        </a>
+                      </dd>
+                    ))}
                   </div>
                   <div>
                     <dt className="eyebrow mb-1 text-white/40">E-mail</dt>

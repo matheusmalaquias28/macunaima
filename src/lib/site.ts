@@ -51,7 +51,7 @@ export const socials = [
 ] as const;
 
 export const contact = {
-  phone: "[A CONFIRMAR]",
+  phones: ["(91) 9 8545-5750", "(91) 9 8814-5471"],
   email: "[A CONFIRMAR]",
   address: "Pará, Brasil · endereço [A CONFIRMAR]",
 };
