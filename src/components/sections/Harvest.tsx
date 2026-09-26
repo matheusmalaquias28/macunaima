@@ -31,6 +31,8 @@ export default function Harvest() {
 
       <div className="gutter mt-16 md:mt-24">
         <Media
+          src="/empresa/camara-refrigerada.jpg"
+          alt="Câmara refrigerada com paletes de caixas de açaí Macunaíma"
           label="Câmara refrigerada a -20 °C com paletes de polpa armazenados"
           tone="deep"
           className="group aspect-[4/5] rounded-[1.75rem] sm:aspect-[16/9] md:rounded-[2.5rem] lg:aspect-[21/9]"

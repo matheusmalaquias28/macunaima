@@ -6,11 +6,11 @@ import { useGSAP } from "@gsap/react";
 import Media from "@/components/ui/Media";
 
 const journey = [
-  { name: "Açaizal", label: "Açaizal nativo na várzea paraense", tone: "rio" as const },
-  { name: "Coleta", label: "Coletor subindo no açaizeiro com a peconha", tone: "acai" as const },
-  { name: "Transporte até a indústria", label: "Caminhão refrigerado a caminho da fábrica", tone: "deep" as const },
-  { name: "Produção", label: "Fruto entrando na linha industrial", tone: "acai" as const },
-  { name: "Distribuição", label: "Caminhões carregando paletes de polpa para distribuição", tone: "deep" as const },
+  { name: "Açaizal", src: "/origem/01-acaizal.jpg", alt: "Açaizeiros carregados de cachos às margens do rio, com ribeirinho no barco" },
+  { name: "Coleta", src: "/origem/02-coleta.jpg", alt: "Coletor com equipamento de segurança subindo no açaizeiro" },
+  { name: "Transporte até a indústria", src: "/origem/03-transporte.jpg", alt: "Caminhão refrigerado da Macunaíma na estrada" },
+  { name: "Produção", src: "/origem/04-producao.jpg", alt: "Frutos de açaí passando pela higienização na linha industrial" },
+  { name: "Distribuição", src: "/origem/05-distribuicao.jpg", alt: "Paletes de caixas Macunaíma sendo carregados no caminhão" },
 ];
 
 const facts = [
@@ -94,8 +94,10 @@ export default function Origin() {
             {journey.map((step, i) => (
               <li key={step.name} className="group relative w-[78vw] shrink-0 snap-start sm:w-[44vw] lg:w-[min(30vw,460px)]">
                 <Media
-                  label={step.label}
-                  tone={step.tone}
+                  src={step.src}
+                  alt={step.alt}
+                  label={step.alt}
+                  sizes="(min-width: 1024px) 30vw, (min-width: 640px) 44vw, 78vw"
                   reveal={false}
                   className="aspect-[4/5] rounded-[1.75rem] lg:aspect-auto lg:h-[52svh]"
                 />

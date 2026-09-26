@@ -151,6 +151,13 @@ body {
   -webkit-mask-repeat: repeat;
   mask-repeat: repeat;
 }
+/* No mobile o padrão fica mais denso na tela; suavizamos para não pesar */
+@media (max-width: 767px) {
+  .bg-padrao::before,
+  .bg-padrao::after {
+    opacity: 0.5;
+  }
+}
 /* Triângulos de cima e de baixo */
 .bg-padrao::before {
   --tri: conic-gradient(from -45deg, #000 0 90deg, transparent 0 180deg, #000 0 270deg, transparent 0);

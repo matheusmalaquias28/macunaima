@@ -4,12 +4,12 @@ import { useState } from "react";
 import Media from "@/components/ui/Media";
 import Button from "@/components/ui/Button";
 
-const flavors = [
+const flavors: { name: string; bg: string; ink: string; a: string; b: string; src?: string }[] = [
   { name: "Coco", bg: "#EFE6D8", ink: "#22011a", a: "#ffffff", b: "#d9c7ae" },
   { name: "Manga", bg: "#F5A524", ink: "#22011a", a: "#ffd27a", b: "#d9780b" },
   { name: "Maracujá", bg: "#F0D33C", ink: "#22011a", a: "#fff09a", b: "#c9a40f" },
   { name: "Pitaya", bg: "#C8175D", ink: "#ffffff", a: "#f0508f", b: "#7d0a37" },
-  { name: "Blue Magic", bg: "#2C5BD8", ink: "#ffffff", a: "#6f97ff", b: "#16338a" },
+  { name: "Blue Magic", bg: "#2C5BD8", ink: "#ffffff", a: "#6f97ff", b: "#16338a", src: "/sorbet/blue-magic.jpg" },
 ];
 
 export default function Sorbet() {
@@ -73,7 +73,7 @@ export default function Sorbet() {
         </div>
 
         <div className="relative lg:col-span-6">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] md:rounded-[2.5rem]" data-reveal="up">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] md:rounded-[2.5rem] lg:aspect-[1/1]" data-reveal="up">
             {flavors.map((fl, i) => (
               <div
                 key={fl.name}
@@ -82,6 +82,9 @@ export default function Sorbet() {
                 }`}
               >
                 <Media
+                  src={fl.src}
+                  alt={`Embalagem de 5 L do Sorbet ${fl.name} Macunaíma ao lado de uma taça com bolas de sorbet`}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                   label={`Pote de Sorbet ${fl.name} 5 L com a fruta ao lado`}
                   tone="custom"
                   reveal={false}

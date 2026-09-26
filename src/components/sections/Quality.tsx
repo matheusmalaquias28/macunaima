@@ -7,36 +7,53 @@ import { useGSAP } from "@gsap/react";
 import Media from "@/components/ui/Media";
 import Button from "@/components/ui/Button";
 
-const items = [
+const items: {
+  title: string;
+  text: string;
+  label: string;
+  src?: string;
+  alt?: string;
+  tone: "acai" | "deep";
+}[] = [
   {
     title: "Controle da matéria-prima",
     text: "Os frutos são avaliados antes de serem liberados para a produção.",
     label: "Analista avaliando amostra de frutos na recepção",
-    tone: "acai" as const,
+    src: "/qualidade/controle-materia-prima.jpg",
+    alt: "Analista de controle de qualidade avaliando frutos de açaí na recepção",
+    tone: "acai"
   },
   {
     title: "Higienização",
     text: "Os frutos passam por quatro tanques de higienização.",
     label: "Tanques de higienização com os frutos em água",
-    tone: "deep" as const,
+    src: "/qualidade/higienizacao.jpg",
+    alt: "Frutos de açaí sendo lavados por jatos de água na linha de higienização da Macunaíma",
+    tone: "deep"
   },
   {
     title: "Processos controlados",
     text: "Etapas como pasteurização e congelamento são monitoradas dentro dos parâmetros estabelecidos.",
     label: "Painel de controle da pasteurização",
-    tone: "acai" as const,
+    src: "/qualidade/processos-controlados.jpg",
+    alt: "Etapas monitoradas da produção: medição de temperatura, pasteurização, congelamento e envase da polpa",
+    tone: "acai"
   },
   {
     title: "Laboratórios próprios",
     text: "A Macunaíma possui laboratórios próprios de Físico-Química e Microbiologia.",
     label: "Laboratório de microbiologia com técnica em análise",
-    tone: "deep" as const,
+    src: "/qualidade/laboratorios.jpg",
+    alt: "Laboratório com microscópio, balança e amostras de polpa de açaí",
+    tone: "deep"
   },
   {
     title: "Rastreabilidade",
     text: "O sistema de rastreabilidade permite identificar internamente a região de origem da matéria-prima utilizada em cada lote.",
     label: "Etiqueta de lote sendo conferida no estoque",
-    tone: "acai" as const,
+    src: "/qualidade/rastreabilidade.jpg",
+    alt: "Colaborador lendo o código de barras de um lote de polpa com coletor de dados",
+    tone: "acai"
   },
 ];
 
@@ -85,7 +102,7 @@ export default function Quality() {
                   active === i ? "scale-100 opacity-100" : "scale-110 opacity-0"
                 }`}
               >
-                <Media label={it.label} tone={it.tone} reveal={false} className="absolute inset-0" />
+                <Media src={it.src} alt={it.alt} label={it.label} tone={it.tone} sizes="(min-width: 1024px) 50vw, 100vw" reveal={false} className="absolute inset-0" />
               </div>
             ))}
             <span className="absolute right-5 top-5 rounded-full bg-white px-4 py-2 font-display text-sm font-semibold text-acai">
@@ -103,7 +120,7 @@ export default function Quality() {
                 active === i ? "lg:opacity-100" : "lg:opacity-30"
               }`}
             >
-              <Media label={it.label} tone={it.tone} className="mb-8 aspect-[4/3] rounded-[1.5rem] lg:hidden" />
+              <Media src={it.src} alt={it.alt} label={it.label} tone={it.tone} sizes="(min-width: 1024px) 50vw, 100vw" className="mb-8 aspect-[4/3] rounded-[1.5rem] lg:hidden" />
               <h3 className="font-display text-[clamp(1.6rem,2.6vw,2.6rem)] font-semibold leading-[1.05] tracking-[-0.035em] text-acai">
                 {it.title}
               </h3>
