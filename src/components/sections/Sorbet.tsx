@@ -7,14 +7,7 @@ import { useGSAP } from "@gsap/react";
 import Media from "@/components/ui/Media";
 import Button from "@/components/ui/Button";
 import { useLenis } from "@/components/motion/MotionProvider";
-
-const flavors: { name: string; bg: string; ink: string; a: string; b: string; src?: string }[] = [
-  { name: "Coco", bg: "#EFE6D8", ink: "#22011a", a: "#ffffff", b: "#d9c7ae", src: "/sorbet/coco.jpg" },
-  { name: "Manga", bg: "#F5A524", ink: "#22011a", a: "#ffd27a", b: "#d9780b", src: "/sorbet/manga.jpg" },
-  { name: "Maracujá", bg: "#F0D33C", ink: "#22011a", a: "#fff09a", b: "#c9a40f", src: "/sorbet/maracuja.jpg" },
-  { name: "Pitaya", bg: "#C8175D", ink: "#ffffff", a: "#f0508f", b: "#7d0a37", src: "/sorbet/pitaya.jpg" },
-  { name: "Blue Magic", bg: "#2C5BD8", ink: "#ffffff", a: "#6f97ff", b: "#16338a", src: "/sorbet/blue-magic.jpg" },
-];
+import { sorbetLine, sorbets as flavors } from "@/lib/site";
 
 export default function Sorbet() {
   const root = useRef<HTMLElement>(null);
@@ -63,24 +56,30 @@ export default function Sorbet() {
       id="sorbet"
       aria-labelledby="sorbet-title"
       className="relative overflow-hidden py-24 transition-[background-color,color] duration-700 ease-[var(--ease-expo)] md:py-36 lg:flex lg:h-[100svh] lg:min-h-[680px] lg:items-center lg:py-0"
-      style={{ backgroundColor: f.bg, color: f.ink }}
+      // Destaque do título em roxo nos sabores claros; nos escuros acompanha o texto branco
+      style={{ backgroundColor: f.bg, color: f.ink, "--em": f.ink === "#ffffff" ? "currentColor" : "#4a0234" } as React.CSSProperties}
     >
       <div className="gutter grid w-full gap-16 lg:grid-cols-12 lg:items-center lg:gap-10 lg:pt-12">
         <div className="flex flex-col lg:col-span-6">
           <p className="eyebrow mb-6 opacity-70" data-reveal="up">
             Conheça também a Linha Sorbet
           </p>
-          <h2 id="sorbet-title" className="t-display xl:text-[clamp(2.2rem,4.6vw,5.5rem)]" data-split>
-            Mais possibilidades para o seu portfólio.
+          <h2 id="sorbet-title" className="t-title [&_em]:text-[var(--em)] [&_em]:transition-colors [&_em]:duration-700" data-split>
+            Mais
+            <br />
+            possibilidades
+            <br />
+            para o seu
+            <br />
+            <em>portfólio.</em>
           </h2>
           <p className="t-lead mt-8 max-w-lg opacity-80 lg:mt-6" data-reveal="up">
-            Além da linha de açaí, a Macunaíma possui uma linha de Sorbet desenvolvida com frutas selecionadas e alta
-            concentração de polpa.
+            {sorbetLine.text}
           </p>
 
           <div className="mt-12 grid gap-10 sm:grid-cols-[1fr_auto] lg:mt-10" data-reveal="up">
             <div>
-              <p className="eyebrow mb-4 opacity-60">5 sabores</p>
+              <p className="eyebrow mb-4 opacity-60">{flavors.length} sabores</p>
               <ul className="flex flex-wrap gap-2" role="list">
                 {flavors.map((fl, i) => (
                   <li key={fl.name}>
@@ -102,7 +101,7 @@ export default function Sorbet() {
             </div>
             <div>
               <p className="eyebrow mb-4 opacity-60">Embalagem</p>
-              <p className="font-display text-4xl font-semibold tracking-[-0.04em]">5 litros</p>
+              <p className="font-display text-4xl font-semibold tracking-[-0.04em]">{sorbetLine.packaging}</p>
             </div>
           </div>
 

@@ -8,7 +8,7 @@ const uses = [
   { name: "Smoothies", src: "/aplicacoes/smoothies-v2.jpg", alt: "Dois copos de smoothie de açaí com hortelã e bananas ao fundo" },
 ];
 
-export default function Applications() {
+export default function Applications({ cta = true }: { cta?: boolean }) {
   return (
     <section aria-labelledby="aplicacoes-title" className="relative bg-white py-24 md:py-36">
       <div className="gutter grid gap-16 lg:grid-cols-12 lg:gap-10">
@@ -17,8 +17,12 @@ export default function Applications() {
             <p className="eyebrow mb-6 text-acai-soft" data-reveal="up">
               Aplicações
             </p>
-            <h2 id="aplicacoes-title" className="t-title text-acai xl:text-[clamp(2rem,3vw,3.5rem)]" data-split>
-              Um produto, diferentes possibilidades.
+            <h2 id="aplicacoes-title" className="t-title text-acai-ink [&_em]:text-acai" data-split>
+              Um produto,
+              <br />
+              diferentes
+              <br />
+              <em>possibilidades.</em>
             </h2>
             <p className="t-lead mt-8 text-acai-ink/70" data-reveal="up">
               A polpa de açaí pode ser utilizada para consumo direto ou como ingrediente na fabricação de produtos
@@ -28,11 +32,13 @@ export default function Applications() {
               <strong className="font-semibold text-acai-ink">Importante:</strong> esses são exemplos de aplicações
               da polpa, e não produtos comercializados pela Macunaíma.
             </p>
-            <div className="mt-10" data-reveal="up">
-              <Button href="/produtos" variant="acai">
-                Ver linha completa
-              </Button>
-            </div>
+            {cta && (
+              <div className="mt-10" data-reveal="up">
+                <Button href="/produtos" variant="acai">
+                  Ver linha completa
+                </Button>
+              </div>
+            )}
           </div>
         </div>
 

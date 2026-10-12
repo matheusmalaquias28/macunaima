@@ -17,8 +17,14 @@ export default function World() {
           <p className="eyebrow mb-6 text-folha" data-reveal="up">
             Do Pará para o Brasil e para o mundo
           </p>
-          <h2 id="mundo-title" className="t-display" data-split>
-            Açaí da Amazônia presente em diferentes mercados.
+          <h2 id="mundo-title" className="t-display [&_em]:text-acai-mist" data-split>
+            Açaí da Amazônia
+            <br />
+            presente em
+            <br />
+            <em>diferentes</em>
+            <br />
+            mercados.
           </h2>
         </div>
         <div className="flex flex-col justify-end lg:col-span-4">

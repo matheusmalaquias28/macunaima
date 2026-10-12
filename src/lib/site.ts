@@ -2,13 +2,14 @@
 
 export type NavLink = { label: string; href: string };
 
+// Seções da home (âncoras) enquanto as páginas internas não existem; Produtos e Sorbet vão para /produtos
 export const mainNav: NavLink[] = [
-  { label: "A Macunaíma", href: "/a-macunaima" },
+  { label: "A Macunaíma", href: "/#a-macunaima" },
   { label: "Produtos", href: "/produtos" },
-  { label: "Origem", href: "/origem" },
-  { label: "Qualidade", href: "/processo-e-qualidade" },
-  { label: "Exportação", href: "/exportacao" },
-  { label: "Linha Sorbet", href: "/linha-sorbet" },
+  { label: "Origem", href: "/#origem" },
+  { label: "Qualidade", href: "/#qualidade" },
+  { label: "Exportação", href: "/#exportacao" },
+  { label: "Linha Sorbet", href: "/produtos#linha-sorbet" },
 ];
 
 export const footerNav: { title: string; links: NavLink[] }[] = [
@@ -101,4 +102,18 @@ export const products = [
     photo: "/produtos/acai-14-1kg.jpg",
     alt: "Embalagem de Açaí Macunaíma 14%, 1,02 kg",
   },
+];
+
+export const sorbetLine = {
+  text: "Além da linha de açaí, a Macunaíma possui uma linha de Sorbet desenvolvida com frutas selecionadas e alta concentração de polpa.",
+  packaging: "5 litros",
+};
+
+// bg/ink: cores do sabor; a/b: tons do placeholder enquanto não houver foto
+export const sorbets: { name: string; bg: string; ink: string; a: string; b: string; src?: string }[] = [
+  { name: "Coco", bg: "#EFE6D8", ink: "#22011a", a: "#ffffff", b: "#d9c7ae", src: "/sorbet/coco.jpg" },
+  { name: "Manga", bg: "#F5A524", ink: "#22011a", a: "#ffd27a", b: "#d9780b", src: "/sorbet/manga.jpg" },
+  { name: "Maracujá", bg: "#F0D33C", ink: "#22011a", a: "#fff09a", b: "#c9a40f", src: "/sorbet/maracuja.jpg" },
+  { name: "Pitaya", bg: "#C8175D", ink: "#ffffff", a: "#f0508f", b: "#7d0a37", src: "/sorbet/pitaya.jpg" },
+  { name: "Blue Magic", bg: "#2C5BD8", ink: "#ffffff", a: "#6f97ff", b: "#16338a", src: "/sorbet/blue-magic.jpg" },
 ];

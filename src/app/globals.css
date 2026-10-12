@@ -9,7 +9,7 @@
   --color-folha-ink: #3f6a1f;
   --color-nevoa: #f6f0f4;
 
-  --font-display: var(--font-unbounded), "Arial Black", sans-serif;
+  --font-display: var(--font-bricolage), system-ui, sans-serif;
   --font-sans: var(--font-figtree), system-ui, sans-serif;
 
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -17,6 +17,12 @@
 }
 
 /* ---------- Base ---------- */
+
+/* Respiro lateral; no desktop largo, limita o conteúdo a 1280px (fundos seguem de ponta a ponta).
+   100cqw = largura útil do body, sem a barra de rolagem, mesmo dentro de trilhas `w-max` */
+:root {
+  --gutter: max(clamp(1.25rem, 4vw, 4.5rem), calc((100cqw - 1280px) / 2));
+}
 
 html {
   -webkit-font-smoothing: antialiased;
@@ -49,6 +55,7 @@ body {
 }
 
 body {
+  container-type: inline-size;
   background: #fff;
   color: var(--color-acai-ink);
   font-family: var(--font-sans);
@@ -68,7 +75,7 @@ body {
 /* ---------- Utilitários ---------- */
 
 @utility gutter {
-  padding-inline: clamp(1.25rem, 4vw, 4.5rem);
+  padding-inline: var(--gutter);
 }
 
 @utility eyebrow {
@@ -79,28 +86,47 @@ body {
   text-transform: uppercase;
 }
 
+/* Rótulos técnicos (réguas de seção, legendas, fichas) */
+@utility caption {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Títulos: peso 600 com palavras de destaque (<em>) em peso 300 e outra cor (definida em cada título) */
 @utility t-mega {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(2.6rem, 7.4vw, 11rem);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 6.2vw, 6.5rem);
   line-height: 0.9;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.03em;
 }
 
 @utility t-display {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(2.2rem, 5.4vw, 6.25rem);
-  line-height: 0.98;
-  letter-spacing: -0.04em;
+  font-size: clamp(2.125rem, 4.4vw, 4.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.0248em;
 }
 
 @utility t-title {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(1.75rem, 3.4vw, 3.75rem);
-  line-height: 1.02;
-  letter-spacing: -0.035em;
+  font-size: clamp(1.875rem, 3.6vw, 3.625rem);
+  line-height: 0.92;
+  letter-spacing: -0.0248em;
+}
+
+:is(.t-mega, .t-display, .t-title) em {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 1.08em;
+  letter-spacing: -0.011em;
 }
 
 @utility t-lead {
@@ -108,11 +134,11 @@ body {
   line-height: 1.5;
 }
 
-/* Linhas mascaradas para o SplitText */
+/* Linhas mascaradas para o SplitText (respiro em cima para acentos com entrelinha curta) */
 .split-line {
   overflow: clip;
-  padding-bottom: 0.14em;
-  margin-bottom: -0.14em;
+  padding-block: 0.1em 0.14em;
+  margin-block: -0.1em -0.14em;
 }
 
 /* ---------- Padrão geométrico de fundo ---------- */
@@ -290,7 +316,7 @@ body {
   background-color: currentColor;
   -webkit-mask: url("/brand/logo-macunaima.svg") no-repeat center / contain;
   mask: url("/brand/logo-macunaima.svg") no-repeat center / contain;
-  aspect-ratio: 2300 / 430;
+  aspect-ratio: 7464 / 1400;
 }
 
 /* Estado inicial dos elementos animados: só esconde quando o JS está ativo */

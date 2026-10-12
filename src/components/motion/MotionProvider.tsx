@@ -48,10 +48,51 @@ export default function MotionProvider({ children }: { children: React.ReactNode
     };
   }, []);
 
-  // Volta ao topo na troca de página
+  // Troca de página: vai à âncora da URL (ex.: /#origem) ou volta ao topo
   useEffect(() => {
-    lenisRef.current?.scrollTo(0, { immediate: true });
+    const target = window.location.hash ? document.querySelector<HTMLElement>(decodeURIComponent(window.location.hash)) : null;
+    if (!target) {
+      lenisRef.current?.scrollTo(0, { immediate: true });
+      return;
+    }
+    // Espera dois quadros para os pins do ScrollTrigger já terem criado seus espaçadores
+    const id = requestAnimationFrame(() =>
+      requestAnimationFrame(() => {
+        const lenis = lenisRef.current;
+        if (!lenis) return target.scrollIntoView();
+        lenis.resize(); // o Lenis ainda guarda a altura da página anterior e limitaria a rolagem
+        lenis.scrollTo(target, { immediate: true, force: true });
+      }),
+    );
+    return () => cancelAnimationFrame(id);
   }, [pathname]);
+
+  // Links para âncoras da própria página rolam suave (inclusive com o menu mobile aberto, que pausa o Lenis)
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const link = (e.target as Element).closest?.("a[href*='#']") as HTMLAnchorElement | null;
+      if (!link || link.target === "_blank") return;
+      const url = new URL(link.href);
+      if (url.origin !== location.origin || url.pathname !== location.pathname || !url.hash) return;
+      const target = document.querySelector<HTMLElement>(decodeURIComponent(url.hash));
+      if (!target) return;
+      // O <Link> do Next respeita o preventDefault e não pula sem animação; o onClick (ex.: fechar menu) continua rodando
+      e.preventDefault();
+      history.pushState(null, "", url.hash);
+      const lenis = lenisRef.current;
+      if (!lenis) return target.scrollIntoView({ behavior: "smooth" });
+      // Com o menu mobile aberto o Lenis está pausado (e a página travada): espera ele voltar, por até ~1s
+      let tries = 60;
+      const go = () => {
+        if (lenis.isStopped && tries-- > 0) return requestAnimationFrame(go);
+        lenis.scrollTo(target, { duration: 1.4, force: true });
+      };
+      go();
+    };
+    window.addEventListener("click", onClick, true);
+    return () => window.removeEventListener("click", onClick, true);
+  }, []);
 
   // Animações de entrada declarativas via data-attributes
   useGSAP(
@@ -105,6 +146,11 @@ export default function MotionProvider({ children }: { children: React.ReactNode
             },
           });
         });
+
+        // O revert desfaz as entradas; limpa a marca para que reanimem (ex.: montagem dupla do StrictMode)
+        return () => {
+          document.querySelectorAll<HTMLElement>("[data-revealed]").forEach((el) => delete el.dataset.revealed);
+        };
       });
 
       // Parallax só a partir do tablet: no celular o scroll é nativo e o scrub em imagens grandes engasga

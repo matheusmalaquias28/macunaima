@@ -1,15 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Figtree, Unbounded } from "next/font/google";
+import { Bricolage_Grotesque, Figtree } from "next/font/google";
 import MotionProvider from "@/components/motion/MotionProvider";
 import Preloader from "@/components/layout/Preloader";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import CookieConsent from "@/components/layout/CookieConsent";
 import "./globals.css";
 
-const unbounded = Unbounded({
-  variable: "--font-unbounded",
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  axes: ["opsz", "wdth"],
 });
 
 const figtree = Figtree({
@@ -35,7 +36,7 @@ const bootScript = `(function(){var d=document.documentElement;d.classList.add('
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="pt-BR" className={`${unbounded.variable} ${figtree.variable}`} suppressHydrationWarning>
+    <html lang="pt-BR" className={`${bricolage.variable} ${figtree.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Header />
           <main>{children}</main>
           <Footer />
+          <CookieConsent />
         </MotionProvider>
       </body>
     </html>

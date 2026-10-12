@@ -11,14 +11,20 @@ const stats = [
 
 export default function Industry() {
   return (
-    <section aria-labelledby="industria-title" className="relative pb-24 pt-10 md:pb-36 md:pt-16">
+    <section id="a-macunaima" aria-labelledby="industria-title" className="relative pb-24 pt-10 md:pb-36 md:pt-16">
       <div className="gutter grid gap-8 lg:grid-cols-12 lg:gap-10">
         <div className="lg:col-span-9">
           <p className="eyebrow mb-6 text-acai-soft" data-reveal="up">
             A Macunaíma
           </p>
-          <h2 id="industria-title" className="t-display text-acai" data-split>
-            Uma indústria amazônica preparada para grandes negócios.
+          <h2 id="industria-title" className="t-display text-acai-ink [&_em]:text-acai" data-split>
+            Uma indústria
+            <br />
+            amazônica preparada
+            <br />
+            para <em>grandes</em>
+            <br />
+            <em>negócios.</em>
           </h2>
         </div>
         <p className="t-lead max-w-md self-end text-acai-ink/70 lg:col-span-4 lg:col-start-9" data-reveal="up">

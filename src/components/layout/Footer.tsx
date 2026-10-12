@@ -1,101 +1,111 @@
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/components/ui/Logo";
-import SocialIcon from "@/components/ui/SocialIcon";
-import { contact, footerNav, seals, socials } from "@/lib/site";
+import { contact, footerNav, seals } from "@/lib/site";
+
+const colTitle = "caption mb-2.5 text-acai-mist";
+const colLink = "w-fit text-white/75 transition-colors duration-300 hover:text-white";
+const metaLabel = "caption mt-3.5 text-white/40";
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const [institucional, produtos, comercial] = footerNav;
+
   return (
-    <footer className="relative overflow-hidden bg-acai-ink text-white">
-      <div className="gutter grid gap-14 pb-16 pt-20 md:pt-28 lg:grid-cols-12 lg:gap-10">
-        <div className="lg:col-span-4">
-          <Logo className="w-[210px]" />
-          <p className="mt-8 max-w-xs text-lg leading-snug text-white/70">
+    <footer className="relative overflow-hidden bg-acai-ink pt-[clamp(70px,8vw,130px)] text-white">
+      <div className="gutter grid grid-cols-12 gap-x-[clamp(14px,1.6vw,28px)] gap-y-6">
+        <div className="col-span-12 mb-6 flex flex-col gap-[22px] lg:col-span-4 lg:mb-0">
+          <Logo className="w-[200px]" />
+          <p className="max-w-[16ch] font-display text-[clamp(20px,1.6vw,26px)] font-light leading-[1.05] tracking-[-0.011em] text-white/85">
             Açaí da Amazônia. Produzido no Pará para o mundo.
           </p>
-          <ul className="mt-8 flex gap-2">
-            {socials.map((s) => (
-              <li key={s.label}>
-                <a
-                  href={s.href}
-                  aria-label={s.label}
-                  className="grid size-12 place-items-center rounded-full border border-white/15 transition-colors duration-300 hover:border-folha hover:bg-folha hover:text-acai-ink"
-                >
-                  <SocialIcon name={s.icon} className="size-[18px]" />
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
 
-        <nav aria-label="Rodapé" className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:col-span-8">
-          {footerNav.map((col) => (
-            <div key={col.title} className={col.title === "Comercial" ? "col-span-2 sm:col-span-1" : ""}>
-              <p className="eyebrow mb-6 text-folha">{col.title}</p>
-              <ul className="flex flex-col gap-3">
-                {col.links.map((l) => (
-                  <li key={l.label}>
-                    <Link
-                      href={l.href}
-                      className="group inline-flex items-center gap-2 text-white/75 transition-colors hover:text-white"
-                    >
-                      <span className="h-px w-0 bg-folha transition-all duration-500 ease-[var(--ease-expo)] group-hover:w-4" />
-                      {l.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              {col.title === "Comercial" && (
-                <dl className="mt-8 flex flex-col gap-4 text-sm text-white/60">
-                  <div>
-                    <dt className="eyebrow mb-1 text-white/40">Telefones</dt>
-                    {contact.phones.map((tel) => (
-                      <dd key={tel}>
-                        <a href={`tel:+55${tel.replace(/\D/g, "")}`} className="transition-colors hover:text-white">
-                          {tel}
-                        </a>
-                      </dd>
-                    ))}
-                  </div>
-                  <div>
-                    <dt className="eyebrow mb-1 text-white/40">E-mail</dt>
-                    <dd>{contact.email}</dd>
-                  </div>
-                  <div>
-                    <dt className="eyebrow mb-1 text-white/40">Endereço</dt>
-                    <dd>{contact.address}</dd>
-                  </div>
-                </dl>
-              )}
-            </div>
+        <nav aria-label={institucional.title} className="col-span-6 flex flex-col gap-2 text-[15px] lg:col-span-2 lg:col-start-6">
+          <h3 className={colTitle}>{institucional.title}</h3>
+          {institucional.links.map((l) => (
+            <Link key={l.label} href={l.href} className={colLink}>
+              {l.label}
+            </Link>
           ))}
         </nav>
+
+        <nav aria-label={produtos.title} className="col-span-6 flex flex-col gap-2 text-[15px] lg:col-span-2">
+          <h3 className={colTitle}>{produtos.title}</h3>
+          {produtos.links.map((l) => (
+            <Link key={l.label} href={l.href} className={colLink}>
+              {l.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="col-span-12 mt-6 flex flex-col gap-2 text-[15px] lg:col-span-3 lg:mt-0">
+          <h3 className={colTitle}>{comercial.title}</h3>
+          {comercial.links.map((l) => (
+            <Link key={l.label} href={l.href} className={colLink}>
+              {l.label}
+            </Link>
+          ))}
+          <p className={metaLabel}>Telefones</p>
+          {contact.phones.map((tel) => (
+            <a key={tel} href={`tel:+55${tel.replace(/\D/g, "")}`} className={colLink}>
+              {tel}
+            </a>
+          ))}
+          <p className={metaLabel}>E-mail</p>
+          <p className="text-white/55">{contact.email}</p>
+          <p className={metaLabel}>Endereço</p>
+          <p className="text-white/55">{contact.address}</p>
+        </div>
       </div>
 
-      <div className="gutter">
-        <div className="border-t border-white/10 py-10">
-          <p className="eyebrow mb-6 text-white/40">Certificações</p>
-          <ul className="grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:gap-3">
+      {/* Selos em linha, monocromáticos */}
+      <div className="gutter mt-[clamp(56px,6vw,96px)]">
+        <div className="flex flex-wrap items-center gap-8 border-t border-white/12 pt-[26px]">
+          <h3 className="caption text-white/50">Certificações</h3>
+          <ul className="flex flex-wrap items-center gap-x-[34px] gap-y-[22px]">
             {seals.map((s) => (
-              <li key={s.src} className="relative h-16 rounded-xl bg-white sm:h-20 sm:w-28 sm:rounded-2xl md:h-24 md:w-32">
-                <Image src={s.src} alt={s.alt} fill sizes="128px" className="object-contain p-3" />
+              <li key={s.src}>
+                <Image
+                  src={s.src}
+                  alt={s.alt}
+                  width={s.w}
+                  height={s.h}
+                  sizes="120px"
+                  className="h-[34px] w-auto opacity-60 mix-blend-screen contrast-[1.3] grayscale invert"
+                />
               </li>
             ))}
           </ul>
         </div>
       </div>
 
-      {/* Assinatura em escala total */}
-      <div className="gutter pb-4 pt-6" aria-hidden="true">
-        <Logo className="w-full text-acai" />
-      </div>
+      {/* Assinatura em escala grande e apagada */}
+      <p
+        aria-hidden="true"
+        className="gutter mt-[clamp(56px,7vw,110px)] whitespace-nowrap font-display text-[clamp(36px,6vw,100px)] leading-[0.9] tracking-[-0.0193em] text-white/10"
+      >
+        <span className="block">Produzido no Pará</span>
+        <span className="block pl-[12vw] font-light">para o mundo.</span>
+      </p>
 
-      <div className="gutter flex flex-col gap-3 border-t border-white/10 py-6 text-sm text-white/50 md:flex-row md:items-center md:justify-between">
-        <p>© {year} Grupo Macunaíma. Todos os direitos reservados.</p>
-        <p>
-          Desenvolvido por <span className="font-semibold text-white">Energy</span>
-        </p>
+      <div className="gutter caption mt-[clamp(24px,3vw,48px)] flex flex-wrap justify-between gap-5 border-t border-white/12 pb-[26px] pt-[22px] text-white/45">
+        <span>© {year} Grupo Macunaíma. Todos os direitos reservados.</span>
+        <span className="hidden md:inline">03°47′S · 52°28′W</span>
+        <span className="flex flex-wrap gap-x-5 gap-y-1">
+          <span>
+            Design por{" "}
+            <a href="https://volostudio.com.br/" target="_blank" rel="noopener noreferrer" className="text-white/75 transition-colors hover:text-white">
+              Volo
+            </a>
+          </span>
+          <span>
+            Desenvolvido por{" "}
+            <a href="https://www.energymidia.com.br/" target="_blank" rel="noopener noreferrer" className="text-white/75 transition-colors hover:text-white">
+              Energy
+            </a>
+          </span>
+        </span>
       </div>
     </footer>
   );

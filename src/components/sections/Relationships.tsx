@@ -11,8 +11,20 @@ export default function Relationships() {
           <p className="t-mega text-acai" aria-hidden="true" data-split>
             22 anos
           </p>
-          <h2 id="relacoes-title" className="t-title mt-8 max-w-xl text-acai" data-split>
-            Algumas parcerias estão com a Macunaíma há mais de duas décadas.
+          <h2
+            id="relacoes-title"
+            className="t-title mt-8 max-w-xl text-[clamp(1.75rem,2.9vw,2.875rem)] text-acai-ink [&_em]:text-acai"
+            data-split
+          >
+            Algumas
+            <br />
+            parcerias estão
+            <br />
+            com a Macunaíma há
+            <br />
+            mais de duas
+            <br />
+            <em>décadas.</em>
           </h2>
           <div className="mt-10 grid max-w-xl gap-5 text-lg leading-relaxed text-acai-ink/70" data-reveal="up">
             <p>Alguns dos maiores clientes da empresa mantêm relacionamento com a Macunaíma há 22 anos.</p>

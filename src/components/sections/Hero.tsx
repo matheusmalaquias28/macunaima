@@ -85,7 +85,10 @@ export default function Hero({ videoSrc, youtubeId }: { videoSrc?: string; youtu
           Açaí da Amazônia.
         </h1>
         <div className="mt-8 grid items-end gap-8 md:mt-10 lg:grid-cols-12">
-          <p data-h-fade className="t-title text-folha opacity-0 lg:col-span-6">
+          <p
+            data-h-fade
+            className="font-display text-[clamp(1.375rem,2.5vw,2.5rem)] font-light leading-[0.98] tracking-[-0.011em] text-folha opacity-0 lg:col-span-6"
+          >
             Produzido no Pará
             <br />
             para o mundo.

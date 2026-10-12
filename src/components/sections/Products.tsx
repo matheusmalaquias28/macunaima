@@ -15,8 +15,14 @@ export default function Products() {
           <p className="eyebrow mb-6 text-acai-soft" data-reveal="up">
             Nossos produtos
           </p>
-          <h2 id="produtos-title" className="t-display text-acai" data-split>
-            Açaí para diferentes necessidades e aplicações.
+          <h2 id="produtos-title" className="t-title text-acai-ink [&_em]:text-acai" data-split>
+            Açaí para
+            <br />
+            diferentes
+            <br />
+            <em>necessidades</em> e
+            <br />
+            aplicações.
           </h2>
         </div>
         <div className="flex flex-col justify-end gap-8 lg:col-span-4 lg:col-start-9">
