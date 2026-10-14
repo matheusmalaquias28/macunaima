@@ -83,10 +83,9 @@ export default function Footer() {
       {/* Assinatura em escala grande e apagada */}
       <p
         aria-hidden="true"
-        className="gutter mt-[clamp(56px,7vw,110px)] whitespace-nowrap font-display text-[clamp(36px,6vw,100px)] leading-[0.9] tracking-[-0.0193em] text-white/10"
+        className="gutter mt-[clamp(56px,7vw,110px)] whitespace-nowrap font-display text-[calc((100cqw-2*var(--gutter))/14.8)] leading-[0.9] tracking-[-0.0193em] text-white/10"
       >
-        <span className="block">Produzido no Pará</span>
-        <span className="block pl-[12vw] font-light">para o mundo.</span>
+        Produzido no Pará <span className="font-light">para o mundo.</span>
       </p>
 
       <div className="gutter caption mt-[clamp(24px,3vw,48px)] flex flex-wrap justify-between gap-5 border-t border-white/12 pb-[26px] pt-[22px] text-white/45">

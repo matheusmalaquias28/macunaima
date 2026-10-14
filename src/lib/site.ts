@@ -57,6 +57,53 @@ export const contact = {
   address: "Pará, Brasil · endereço [A CONFIRMAR]",
 };
 
+// Slides da hero (carrossel). Tudo é editável: fundo, textos e botões.
+// Fundo: YouTube (id), vídeo local (src em public/video), imagem (src) ou a logo sobre o roxo.
+// O primeiro slide é o título principal da página (h1).
+export type HeroBackground =
+  | { type: "youtube"; id: string }
+  | { type: "video"; src: string }
+  | { type: "image"; src: string; alt?: string }
+  | { type: "logo" };
+
+export type HeroSlide = {
+  background: HeroBackground;
+  eyebrow?: string;
+  title: string;
+  subtitle?: string[]; // uma linha por item
+  text?: string;
+  ctas?: { label: string; href: string; variant?: "folha" | "outline-light" }[];
+  tag?: string; // rótulo da barra inferior
+};
+
+export const heroSlides: HeroSlide[] = [
+  {
+    background: { type: "youtube", id: "ctjxznmqRV0" },
+    eyebrow: "Pará, Brasil",
+    title: "Açaí da Amazônia.",
+    subtitle: ["Produzido no Pará", "para o mundo."],
+    text: "Da origem do fruto à produção industrial, a Macunaíma transforma o açaí do Pará em produtos para empresas que precisam de qualidade, escala e consistência.",
+    ctas: [
+      { label: "Conheça nossos produtos", href: "/produtos" },
+      { label: "Quero comprar", href: "/contato", variant: "outline-light" },
+    ],
+    tag: "Indústria de polpa de açaí",
+  },
+  // Conteúdo provisório, só para demonstrar o carrossel
+  {
+    background: { type: "logo" },
+    eyebrow: "Grupo Macunaíma",
+    title: "Qualidade em escala.",
+    subtitle: ["Do açaizal", "à sua operação."],
+    text: "Estrutura industrial, certificações internacionais e uma cadeia de fornecimento próxima da origem para atender o seu negócio com regularidade.",
+    ctas: [
+      { label: "Fale com a Macunaíma", href: "/contato" },
+      { label: "Conheça a origem", href: "/#origem", variant: "outline-light" },
+    ],
+    tag: "Grupo Macunaíma",
+  },
+];
+
 export const seals = [
   { src: "/selos/fssc-22000.png", alt: "Certificação FSSC 22000", w: 1131, h: 208 },
   { src: "/selos/organico-brasil.png", alt: "Produto Orgânico Brasil", w: 310, h: 146 },

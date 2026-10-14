@@ -4,7 +4,7 @@ import { seals } from "@/lib/site";
 export default function Certifications() {
   const loop = [...seals, ...seals];
   return (
-    <section aria-labelledby="cert-title" className="relative overflow-hidden bg-nevoa pb-[clamp(36px,4vw,60px)] pt-[clamp(40px,5vw,72px)]">
+    <section aria-labelledby="cert-title" className="relative overflow-hidden bg-white pb-[clamp(36px,4vw,60px)] pt-[clamp(40px,5vw,72px)]">
       <div className="gutter mb-[clamp(28px,3vw,44px)] grid items-end gap-5 md:grid-cols-12 md:gap-[clamp(14px,1.6vw,28px)]">
         <h2 id="cert-title" className="caption flex items-center gap-3 text-acai-soft md:col-span-4" data-reveal="up">
           <span className="h-px w-7 bg-current opacity-70" />

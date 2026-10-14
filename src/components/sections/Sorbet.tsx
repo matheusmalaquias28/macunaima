@@ -65,13 +65,9 @@ export default function Sorbet() {
             Conheça também a Linha Sorbet
           </p>
           <h2 id="sorbet-title" className="t-title [&_em]:text-[var(--em)] [&_em]:transition-colors [&_em]:duration-700" data-split>
-            Mais
+            <span className="whitespace-nowrap">Mais possibilidades</span>
             <br />
-            possibilidades
-            <br />
-            para o seu
-            <br />
-            <em>portfólio.</em>
+            para o seu <em>portfólio.</em>
           </h2>
           <p className="t-lead mt-8 max-w-lg opacity-80 lg:mt-6" data-reveal="up">
             {sorbetLine.text}

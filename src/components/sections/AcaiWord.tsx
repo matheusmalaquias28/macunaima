@@ -1,16 +1,5 @@
-"use client";
-
-import { useRef } from "react";
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
-import Media from "@/components/ui/Media";
-import AutoVideo from "@/components/ui/AutoVideo";
 import LineIcon from "@/components/ui/LineIcon";
 import SectionHead from "@/components/ui/SectionHead";
-
-// Largura de "AÇAÍ" em Bricolage 800 dividida pelo font-size (medida no navegador).
-// Com ela a palavra ocupa 97% da largura do conteúdo só com CSS, sem medir em JS.
-const WORD_RATIO = 1.975;
 
 const chain = [
   {
@@ -54,56 +43,9 @@ const chain = [
 ];
 
 export default function AcaiWord() {
-  const root = useRef<HTMLElement>(null);
-
-  // A palavra encolhe levemente enquanto atravessa a tela
-  useGSAP(
-    () => {
-      const mm = gsap.matchMedia();
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.fromTo(
-          "[data-acai-word]",
-          { scale: 1 },
-          {
-            scale: 0.94,
-            ease: "none",
-            scrollTrigger: { trigger: "[data-acai-knock]", start: "center bottom", end: "center top", scrub: true },
-          },
-        );
-      });
-      return () => mm.revert();
-    },
-    { scope: root },
-  );
-
   return (
-    <section ref={root} aria-label="Açaí — do fruto ao seu negócio" className="relative overflow-hidden bg-white pb-[clamp(80px,10vw,160px)] text-acai-ink">
+    <section aria-label="Açaí — do fruto ao seu negócio" className="relative overflow-hidden bg-white pb-[clamp(80px,10vw,160px)] text-acai-ink">
       <SectionHead items={["02", "Açaí", "Euterpe oleracea", "Matéria-prima"]} />
-
-      {/* Palavra vazada: fundo branco em "screen" sobre o vídeo deixa o vídeo aparecer só dentro das letras */}
-      <div className="relative isolate mt-[clamp(24px,3vw,48px)]">
-        {/* inset de 1px: a borda do vídeo fica sempre sob o branco (evita fio em posições fracionárias) */}
-        <AutoVideo
-          src="/video/polpa.mp4"
-          poster="/video/polpa-poster.jpg"
-          className="absolute inset-px h-[calc(100%-2px)] w-[calc(100%-2px)] bg-acai object-cover"
-        />
-        <div
-          data-acai-knock
-          aria-hidden="true"
-          className="gutter relative flex items-center justify-center overflow-hidden bg-white pb-[clamp(8px,1.5vw,24px)] pt-[clamp(48px,6vw,96px)] mix-blend-screen"
-        >
-          {/* pb em "em": a cedilha desce além da entrelinha curta e seria cortada */}
-          <span
-            data-acai-word
-            className="block whitespace-nowrap pb-[0.16em] font-display font-extrabold leading-[0.8] tracking-[-0.0385em] text-black"
-            style={{ fontSize: `calc((100cqw - 2 * var(--gutter)) * 0.97 / ${WORD_RATIO})` }}
-          >
-            AÇAÍ
-          </span>
-        </div>
-        <p className="sr-only">Açaí</p>
-      </div>
 
       <ol className="gutter mt-[clamp(40px,5vw,80px)] grid gap-[30px] md:grid-cols-3 md:gap-[clamp(14px,1.6vw,28px)]">
         {chain.map((c, i) => (
@@ -119,36 +61,6 @@ export default function AcaiWord() {
           </li>
         ))}
       </ol>
-
-      {/* Mosaico: fruto, higienização e polpa */}
-      <div className="gutter mt-[clamp(56px,8vw,140px)] grid grid-cols-12 items-start gap-[clamp(14px,1.6vw,28px)]">
-        <Media
-          src="/empresa/macro-fruto-acai.webp"
-          alt="Açaí em close na chegada à indústria"
-          label="Açaí em close"
-          sizes="(min-width: 768px) 58vw, 100vw"
-          parallax={8}
-          className="col-span-12 aspect-[9/5] md:col-span-7"
-        />
-        <Media
-          src="/acai/higienizacao-linha.webp"
-          alt="Frutos na linha de higienização"
-          label="Frutos na linha de higienização"
-          sizes="(min-width: 768px) 33vw, 58vw"
-          className="col-span-7 mt-[clamp(14px,1.6vw,28px)] aspect-[3/4] md:col-span-4 md:col-start-9 md:mt-[clamp(40px,10vw,180px)]"
-        />
-        {/* Moldura branca fica no wrapper: o clip-path da revelação cortaria o outline */}
-        <div className="relative z-[2] col-span-7 col-start-6 -mt-[30%] outline outline-[clamp(8px,1vw,16px)] outline-white md:col-span-4 md:col-start-5 md:-mt-[calc(clamp(14px,1.6vw,28px)+clamp(20px,6vw,100px))]">
-          <Media
-            src="/acai/polpa.webp"
-            alt="Polpa de açaí na linha de produção"
-            label="Polpa de açaí na linha de produção"
-            sizes="(min-width: 768px) 33vw, 58vw"
-            className="aspect-square"
-          />
-        </div>
-        <p className="caption col-span-12 mt-4 text-acai-ink/50 md:col-span-3 md:col-start-10">Fruto · Higienização · Polpa</p>
-      </div>
     </section>
   );
 }

@@ -12,15 +12,12 @@ import World from "@/components/sections/World";
 import Relationships from "@/components/sections/Relationships";
 import Sorbet from "@/components/sections/Sorbet";
 import FinalCta from "@/components/sections/FinalCta";
-
-// Quando os vídeos estiverem prontos, salve em public/video e informe o caminho aqui.
-const HERO_VIDEO: string | undefined = undefined; // "/video/hero.mp4"
-const HERO_YOUTUBE_ID = "ctjxznmqRV0"; // tem prioridade sobre HERO_VIDEO
+import { heroSlides } from "@/lib/site";
 
 export default function Home() {
   return (
     <>
-      <Hero videoSrc={HERO_VIDEO} youtubeId={HERO_YOUTUBE_ID} />
+      <Hero slides={heroSlides} />
       <Certifications />
       <div className="bg-padrao">
         <Industry />

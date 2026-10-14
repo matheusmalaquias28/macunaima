@@ -20,9 +20,9 @@ export default function FinalCta() {
           Fale com a Macunaíma
         </p>
         <h2 id="cta-title" className="t-mega leading-[0.86] [&_em]:text-[1.06em] [&_em]:text-acai-mist" data-split>
-          Seu negócio precisa
+          Seu negócio
           <br />
-          de <em>açaí?</em>
+          precisa de <em>açaí?</em>
         </h2>
         <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <p className="t-lead max-w-md text-white/80" data-reveal="up">

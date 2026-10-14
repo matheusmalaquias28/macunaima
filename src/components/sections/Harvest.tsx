@@ -65,16 +65,14 @@ export default function Harvest() {
       <SectionHead onDark items={["05", "Estrutura", "Câmara refrigerada", "Safra → ano todo"]} />
 
       <div className="gutter grid items-end gap-10 pb-[clamp(40px,5vw,80px)] pt-[clamp(60px,8vw,140px)] lg:grid-cols-12 lg:gap-[clamp(14px,1.6vw,28px)]">
-        <h2 id="safra-title" className="t-display lg:col-span-8 [&_em]:text-acai-mist" data-split>
-          Produção na
-          <br />
-          <em>safra.</em>
+        <h2 id="safra-title" className="t-display lg:col-span-9 [&_em]:text-acai-mist" data-split>
+          Produção na <em>safra.</em>
           <br />
           Fornecimento ao
           <br />
           longo do <em>ano.</em>
         </h2>
-        <div className="flex flex-col gap-4 text-white/75 lg:col-span-4" data-reveal="up">
+        <div className="flex flex-col gap-4 text-white/75 lg:col-span-3" data-reveal="up">
           <p>
             A Macunaíma concentra sua produção durante o período de safra para formar estoque e manter a padronização de
             suas polpas.

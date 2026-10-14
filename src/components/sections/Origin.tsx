@@ -127,11 +127,11 @@ export default function Origin() {
   };
 
   return (
-    <section ref={root} id="origem" aria-labelledby="origem-title" className="relative bg-acai pb-20 text-white md:pb-32">
+    <section ref={root} id="origem" aria-labelledby="origem-title" className="relative bg-acai pb-12 text-white md:pb-16">
       <SectionHead onDark items={["04", "Origem", "Bacia amazônica", "Pará — BR"]} />
 
       {/* Abertura: foto com relevo topográfico, fundindo com o fundo em cima e embaixo */}
-      <div className="relative h-[clamp(560px,92svh,1000px)] overflow-hidden">
+      <div className="relative h-[clamp(480px,76svh,840px)] overflow-hidden">
         <Media
           src="/empresa/origem-rio-amazonia.jpg"
           alt="Barco ribeirinho navegando por rio cercado pela floresta amazônica"
@@ -149,7 +149,7 @@ export default function Origin() {
             <span className="h-px w-7 bg-current opacity-70" />
             Nossa origem
           </p>
-          <h2 id="origem-title" className="t-mega leading-[0.86] [&_em]:ml-[clamp(0px,8vw,140px)] [&_em]:inline-block [&_em]:text-[1.02em] [&_em]:text-folha" data-split>
+          <h2 id="origem-title" className="t-mega leading-[0.86] [&_em]:inline-block [&_em]:text-[1.02em] [&_em]:text-folha" data-split>
             Açaí da Amazônia.
             <br />
             <em>Pará, Brasil.</em>
@@ -158,7 +158,7 @@ export default function Origin() {
       </div>
 
       {/* Da Amazônia à indústria: três números */}
-      <div className="gutter relative z-[2] grid gap-10 pb-[clamp(56px,7vw,120px)] pt-[clamp(56px,7vw,120px)] lg:grid-cols-12 lg:gap-[clamp(14px,1.6vw,28px)]">
+      <div className="gutter relative z-[2] grid gap-10 pb-[clamp(24px,3vw,48px)] pt-[clamp(32px,4vw,64px)] lg:pb-0 lg:grid-cols-12 lg:gap-[clamp(14px,1.6vw,28px)]">
         <h3
           className="font-display text-[clamp(20px,1.7vw,26px)] font-medium leading-[1.05] tracking-[-0.0165em] lg:col-span-3 [&_em]:text-[1.2em] [&_em]:font-light [&_em]:not-italic [&_em]:text-folha"
           data-reveal="up"
@@ -184,7 +184,7 @@ export default function Origin() {
             <dd className="max-w-[28ch] text-[15.5px] text-white/70">entre a colheita e a entrada do fruto na linha industrial.</dd>
           </div>
           <div className="border-t border-white/12 pt-[18px]" data-reveal="up">
-            <dt className="mb-[18px] pt-[clamp(26px,3vw,52px)] font-display text-[clamp(30px,2.8vw,48px)] font-medium leading-[0.95] tracking-[-0.0248em]">
+            <dt className="mb-[18px] font-display text-[clamp(30px,2.8vw,48px)] font-medium leading-[0.95] tracking-[-0.0248em]">
               Açaí <em className="block text-[1.1em] font-light not-italic tracking-[-0.0055em] text-folha">do Pará</em>
             </dt>
             <dd className="max-w-[28ch] text-[15.5px] text-white/70">como matéria-prima utilizada pela empresa.</dd>
@@ -193,8 +193,8 @@ export default function Origin() {
       </div>
 
       {/* Jornada do fruto */}
-      <div data-o-pin className="relative overflow-hidden pt-6 lg:flex lg:h-[100svh] lg:flex-col lg:justify-center lg:pt-18">
-        <div className="gutter mb-10 lg:mb-[clamp(2.5rem,7svh,5rem)] lg:grid lg:grid-cols-12 lg:items-center lg:gap-10">
+      <div data-o-pin className="relative overflow-hidden pt-6 lg:flex lg:h-[100svh] lg:flex-col lg:justify-center lg:pt-16">
+        <div className="gutter mb-10 lg:mb-[clamp(1.5rem,4svh,3rem)] lg:grid lg:grid-cols-12 lg:items-center lg:gap-10">
           <p className="eyebrow max-w-[17rem] leading-[1.45] text-white/50 lg:col-span-4">
             <span className="lg:hidden">Deslize para acompanhar o caminho do fruto</span>
             <span className="hidden lg:inline">Role para acompanhar o caminho do fruto</span>
@@ -240,10 +240,10 @@ export default function Origin() {
         <div data-o-track className="relative lg:w-max">
           <ol className="gutter flex snap-x snap-mandatory scroll-px-5 gap-4 no-scrollbar overflow-x-auto pb-2 lg:snap-none lg:gap-14 lg:overflow-visible lg:pb-0">
             {journey.map((step, i) => (
-              // Desktop: 3 cards ocupam a largura do conteúdo, limitados pela altura da tela
+              // Desktop: o tamanho do card vem da altura da tela, para o bloco travado preenchê-la sem sobra
               <li
                 key={step.name}
-                className="group relative w-[78vw] shrink-0 snap-start sm:w-[44vw] lg:w-[min(calc((100cqw-2*var(--gutter)-7rem)/3),44svh)]"
+                className="group relative w-[78vw] shrink-0 snap-start sm:w-[44vw] lg:w-[min(calc((100cqw-2*var(--gutter)-3.5rem)/1.5),calc(76svh-230px))]"
               >
                 {/* Alturas alternadas: pares descem, ímpares sobem; o filete abaixo fica alinhado */}
                 <div className={i % 2 ? "lg:pt-10" : "lg:pb-10"}>
