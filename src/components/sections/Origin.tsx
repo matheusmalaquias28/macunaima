@@ -11,8 +11,8 @@ import { useLenis } from "@/components/motion/MotionProvider";
 const journey = [
   {
     name: "Açaizal",
-    src: "/origem/01-acaizal.jpg",
-    alt: "Açaizeiros carregados de cachos às margens do rio, com ribeirinho no barco",
+    src: "/origem/01-acaizal-v2.webp",
+    alt: "Cacho de açaí maduro no alto do açaizeiro, contra o céu azul",
     icon: (
       <>
         <path d="M12 21.5c.6-3.6.6-7.4 0-11" />
@@ -24,8 +24,8 @@ const journey = [
   },
   {
     name: "Coleta",
-    src: "/origem/02-coleta.jpg",
-    alt: "Coletor com equipamento de segurança subindo no açaizeiro",
+    src: "/origem/02-coleta-v2.png",
+    alt: "Mãos de coletor despejando frutos de açaí em cesto de palha",
     icon: (
       <>
         <path d="M7 10V8.5a5 5 0 0 1 10 0V10" />
@@ -36,7 +36,7 @@ const journey = [
   },
   {
     name: "Transporte até a indústria",
-    src: "/origem/03-transporte.jpg",
+    src: "/origem/03-transporte-v2.png",
     alt: "Caminhão refrigerado da Macunaíma na estrada",
     icon: (
       <>
@@ -49,7 +49,7 @@ const journey = [
   },
   {
     name: "Produção",
-    src: "/origem/04-producao.jpg",
+    src: "/origem/04-producao-v2.png",
     alt: "Frutos de açaí passando pela higienização na linha industrial",
     icon: (
       <>
@@ -61,7 +61,7 @@ const journey = [
   },
   {
     name: "Distribuição",
-    src: "/origem/05-distribuicao.jpg",
+    src: "/origem/05-distribuicao-v2.png",
     alt: "Paletes de caixas Macunaíma sendo carregados no caminhão",
     icon: (
       <>
@@ -133,9 +133,9 @@ export default function Origin() {
       {/* Abertura: foto com relevo topográfico, fundindo com o fundo em cima e embaixo */}
       <div className="relative h-[clamp(480px,76svh,840px)] overflow-hidden">
         <Media
-          src="/empresa/origem-rio-amazonia.jpg"
-          alt="Barco ribeirinho navegando por rio cercado pela floresta amazônica"
-          label="Rio na floresta amazônica"
+          src="/empresa/origem-acaizal.png"
+          alt="Açaizal nativo com cachos de açaí, estendendo-se até o horizonte da floresta amazônica"
+          label="Açaizal na floresta amazônica"
           tone="acai"
           reveal={false}
           parallax={10}

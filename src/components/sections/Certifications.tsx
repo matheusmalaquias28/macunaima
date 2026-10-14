@@ -12,7 +12,7 @@ export default function Certifications() {
           <span className="text-acai-ink">{String(seals.length).padStart(2, "0")}</span>
         </h2>
         <p
-          className="max-w-[40ch] font-display text-[clamp(1.0625rem,1.35vw,1.25rem)] leading-[1.3] tracking-[-0.0083em] text-acai-ink md:col-span-6 md:col-start-6"
+          className="font-display text-[clamp(1.0625rem,1.35vw,1.25rem)] leading-[1.3] tracking-[-0.0083em] text-acai-ink md:col-span-8 md:col-start-5 lg:justify-self-end lg:whitespace-nowrap"
           data-reveal="up"
         >
           Padrões reconhecidos no Brasil e nos mercados para onde o açaí da Macunaíma é exportado.
@@ -20,7 +20,7 @@ export default function Certifications() {
       </div>
 
       {/* Logos em preto e branco (a cor volta no hover); padding = gap para o loop de -50% emendar sem salto */}
-      <div className="marquee overflow-hidden border-y border-acai-ink/15 py-[26px] [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
+      <div className="marquee overflow-hidden py-[26px] [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
         <ul
           className="marquee-track flex w-max items-center gap-[clamp(48px,6vw,96px)] pr-[clamp(48px,6vw,96px)]"
           style={{ "--marquee-duration": "42s" } as React.CSSProperties}

@@ -143,64 +143,9 @@ body {
 
 /* ---------- Padrão geométrico de fundo ---------- */
 
-/* Quadrados divididos pelas diagonais em 4 triângulos hachurados:
-   hachura vertical em cima/embaixo, horizontal nas laterais.
-   Os vãos brancos (diagonais e bordas do quadrado) são recortados da máscara. */
+/* Textura de grafismos da marca, desenhada em largura total e repetida na vertical */
 .bg-padrao {
-  --padrao-tile: clamp(110px, 11vw, 170px);
-  --padrao-cor: #f1edec;
-  --padrao-traco: 3px;
-  --padrao-passo: 10px;
-  --padrao-vao: 6px;
-  position: relative;
-  isolation: isolate;
-  background-color: #fff;
-}
-.bg-padrao::before,
-.bg-padrao::after {
-  --vao: calc(var(--padrao-vao) / 2);
-  --diag-a: linear-gradient(45deg, transparent calc(50% - var(--vao)), #000 0 calc(50% + var(--vao)), transparent 0);
-  --diag-b: linear-gradient(-45deg, transparent calc(50% - var(--vao)), #000 0 calc(50% + var(--vao)), transparent 0);
-  --borda-h: linear-gradient(#000 0 var(--vao), transparent 0 calc(100% - var(--vao)), #000 0);
-  --borda-v: linear-gradient(90deg, #000 0 var(--vao), transparent 0 calc(100% - var(--vao)), #000 0);
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  -webkit-mask-image: var(--tri), var(--diag-a), var(--diag-b), var(--borda-h), var(--borda-v);
-  mask-image: var(--tri), var(--diag-a), var(--diag-b), var(--borda-h), var(--borda-v);
-  -webkit-mask-composite: source-out, source-over, source-over, source-over;
-  mask-composite: subtract, add, add, add;
-  -webkit-mask-size: var(--padrao-tile) var(--padrao-tile);
-  mask-size: var(--padrao-tile) var(--padrao-tile);
-  -webkit-mask-repeat: repeat;
-  mask-repeat: repeat;
-}
-/* No mobile o padrão fica mais denso na tela; suavizamos para não pesar */
-@media (max-width: 767px) {
-  .bg-padrao::before,
-  .bg-padrao::after {
-    opacity: 0.5;
-  }
-}
-/* Triângulos de cima e de baixo */
-.bg-padrao::before {
-  --tri: conic-gradient(from -45deg, #000 0 90deg, transparent 0 180deg, #000 0 270deg, transparent 0);
-  background: repeating-linear-gradient(
-    90deg,
-    var(--padrao-cor) 0 var(--padrao-traco),
-    transparent var(--padrao-traco) var(--padrao-passo)
-  );
-}
-/* Triângulos laterais */
-.bg-padrao::after {
-  --tri: conic-gradient(from 45deg, #000 0 90deg, transparent 0 180deg, #000 0 270deg, transparent 0);
-  background: repeating-linear-gradient(
-    180deg,
-    var(--padrao-cor) 0 var(--padrao-traco),
-    transparent var(--padrao-traco) var(--padrao-passo)
-  );
+  background: #fff url("/brand/textura-macunaima.svg") repeat-y center top / 100% auto;
 }
 
 /* ---------- Placeholder de mídia ---------- */

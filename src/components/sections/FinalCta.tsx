@@ -5,9 +5,9 @@ export default function FinalCta() {
   return (
     <section aria-labelledby="cta-title" className="relative flex min-h-[90svh] items-end overflow-hidden bg-acai text-white">
       <Media
-        src="/empresa/macro-fruto-acai.webp"
-        alt="Close de frutos de açaí"
-        label="Close de frutos de açaí"
+        src="/empresa/cta-embalagens-acai.webp"
+        alt="Pacotes de polpa de açaí Macunaíma em cesto de palha, cercados por frutos e creme de açaí"
+        label="Pacotes de polpa de açaí Macunaíma em cesto de palha, cercados por frutos e creme de açaí"
         labelAt="top"
         tone="acai"
         reveal={false}

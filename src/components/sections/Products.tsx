@@ -8,7 +8,7 @@ export default function Products() {
     <section
       id="produtos"
       aria-labelledby="produtos-title"
-      className="relative -mt-10 rounded-t-[2.5rem] bg-nevoa py-24 md:-mt-16 md:rounded-t-[4rem] md:py-36"
+      className="relative -mt-10 rounded-t-[2.5rem] bg-nevoa pb-20 pt-24 md:-mt-16 md:rounded-t-[4rem] md:pb-28 md:pt-36"
     >
       <div className="gutter grid gap-8 lg:grid-cols-12">
         <div className="lg:col-span-7">
@@ -66,8 +66,8 @@ export default function Products() {
         ))}
       </ul>
 
-      <div className="gutter mt-16 border-t border-acai/15 pt-8 md:mt-24">
-        <p className="max-w-xl text-acai-ink/70" data-reveal="up">
+      <div className="gutter mt-16 flex justify-center md:mt-20">
+        <p className="border border-acai/25 px-6 py-3.5 text-center text-acai-ink/70 lg:whitespace-nowrap" data-reveal="up">
           Polpas de açaí indicadas para consumo direto ou para utilização na fabricação de outros produtos.
         </p>
       </div>

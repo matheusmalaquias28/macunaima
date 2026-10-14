@@ -2,10 +2,10 @@ import Media from "@/components/ui/Media";
 import Button from "@/components/ui/Button";
 
 const uses = [
-  { name: "Sorvetes", src: "/aplicacoes/sorvetes-v2.webp", alt: "Tigela de madeira com creme de açaí" },
-  { name: "Sucos", src: "/aplicacoes/sucos.jpg", alt: "Caneca de vidro com suco de açaí" },
-  { name: "Néctares", src: "/aplicacoes/nectares-v2.jpg", alt: "Garrafas de vidro com néctar de açaí" },
-  { name: "Smoothies", src: "/aplicacoes/smoothies-v2.jpg", alt: "Dois copos de smoothie de açaí com hortelã e bananas ao fundo" },
+  { name: "Sorvetes", src: "/aplicacoes/sorvetes-v3.png", alt: "Bolas de sorvete de açaí em tigela de cerâmica sobre palha trançada" },
+  { name: "Sucos", src: "/aplicacoes/sucos-v3.png", alt: "Copo alto de suco de açaí sobre mesa de madeira" },
+  { name: "Néctares", src: "/aplicacoes/nectares-v3.png", alt: "Copo de néctar de açaí sobre pedra, com frutos de açaí ao lado" },
+  { name: "Smoothies", src: "/aplicacoes/smoothies-v3.png", alt: "Copo de smoothie de açaí com canudo e tigela de frutos ao fundo" },
 ];
 
 export default function Applications({ cta = true }: { cta?: boolean }) {
