@@ -38,7 +38,10 @@ export default function Relationships() {
         <div className="relative h-[520px] sm:h-[640px] lg:col-span-6 lg:h-[760px]">
           <div className="absolute right-0 top-0 w-[72%] rotate-[3deg]" data-reveal="up">
             <Media
-              label="Equipe comercial recebendo cliente na fábrica"
+              src="/relacionamentos/bone-embalagens.webp"
+              alt="Boné do Grupo Macunaíma sobre cesto de açaí, com pacotes de polpa Macunaíma ao fundo"
+              sizes="(min-width: 1024px) 36vw, 72vw"
+              label="Boné e embalagens Macunaíma"
               className="group aspect-[4/5] rounded-[1.5rem] shadow-[0_40px_80px_-30px_rgba(34,1,26,0.5)]"
               reveal={false}
             />

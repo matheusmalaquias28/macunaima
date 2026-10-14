@@ -118,7 +118,7 @@ export default function OndeNosEncontrarPage() {
             {/* Sempre em 2 linhas: no celular a fonte acompanha a largura para "mais perto de você?" caber */}
             <h1
               id="encontrar-title"
-              className="t-mega whitespace-nowrap max-md:text-[min(2.5rem,9vw)] [&_em]:text-folha"
+              className="t-mega whitespace-nowrap text-[min(2.5rem,9vw)] md:text-[clamp(3rem,5.6vw,5.75rem)] [&_em]:text-folha"
               data-split
             >
               Onde estamos
