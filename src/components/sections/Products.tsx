@@ -34,7 +34,7 @@ export default function Products() {
       <ul className="gutter mt-16 grid gap-5 sm:grid-cols-2 md:mt-24 xl:grid-cols-4">
         {products.map((p) => (
           <li key={p.slug} data-reveal="up">
-            <Link href={`/produtos/${p.slug}`} className="group block">
+            <Link href={`/produtos#${p.slug}`} className="group block">
               <div className="relative overflow-hidden rounded-[1.75rem] transition-transform duration-700 ease-[var(--ease-expo)] group-hover:-translate-y-2">
                 <Media
                   src={p.photo}
