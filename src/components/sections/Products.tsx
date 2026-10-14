@@ -16,16 +16,14 @@ export default function Products() {
             Nossos produtos
           </p>
           <h2 id="produtos-title" className="t-title text-acai-ink [&_em]:text-acai" data-split>
-            Açaí para
-            <br />
-            diferentes
+            <span className="lg:whitespace-nowrap">Açaí para diferentes</span>
             <br />
             <em>necessidades</em> e
             <br />
             aplicações.
           </h2>
         </div>
-        <div className="flex flex-col justify-end gap-8 lg:col-span-4 lg:col-start-9">
+        <div className="flex flex-col justify-end gap-8 lg:col-span-5 lg:col-start-8">
           <p className="t-lead text-acai-ink/70" data-reveal="up">
             A Macunaíma produz polpa de açaí em diferentes concentrações e formatos, atendendo diferentes
             necessidades de seus clientes.

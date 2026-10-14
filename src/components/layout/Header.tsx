@@ -66,12 +66,12 @@ export default function Header() {
           </Link>
 
           <nav aria-label="Principal" className="hidden xl:block">
-            <ul className="flex items-center gap-9">
+            <ul className="flex items-center gap-[clamp(18px,1.9vw,36px)]">
               {mainNav.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="group relative py-2 text-[0.92rem] font-medium text-white/85 transition-colors hover:text-white"
+                    className="group relative whitespace-nowrap py-2 text-[0.92rem] font-medium text-white/85 transition-colors hover:text-white"
                   >
                     {item.label}
                     <span className="absolute inset-x-0 -bottom-0.5 h-px origin-right scale-x-0 bg-folha transition-transform duration-500 ease-[var(--ease-expo)] group-hover:origin-left group-hover:scale-x-100" />

@@ -101,9 +101,6 @@ const policy = {
     "Promover a comunicação eficaz com todas as partes interessadas, garantindo que o recebimento de materiais e serviços atenda às necessidades da Macunaíma.",
     "Garantir a melhoria contínua dos processos e a redução de perdas de alimentos.",
   ],
-  code: "PO QUA 001 · Rev. 06",
-  approved: "Aprovada em 13/04/2026",
-  signedBy: "Gustavo Dias Breda · Diretor",
 };
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -247,11 +244,6 @@ export default function Quality() {
                 </li>
               ))}
             </ol>
-            <p className="caption mt-6 flex flex-wrap gap-x-5 gap-y-1 text-acai-ink/45">
-              <span>{policy.code}</span>
-              <span>{policy.approved}</span>
-              <span>{policy.signedBy}</span>
-            </p>
           </div>
         </article>
       </div>

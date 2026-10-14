@@ -10,6 +10,7 @@ export const mainNav: NavLink[] = [
   { label: "Qualidade", href: "/#qualidade" },
   { label: "Exportação", href: "/#exportacao" },
   { label: "Linha Sorbet", href: "/produtos#linha-sorbet" },
+  { label: "Onde nos encontrar", href: "/onde-nos-encontrar" },
 ];
 
 export const footerNav: { title: string; links: NavLink[] }[] = [
@@ -39,6 +40,7 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
     links: [
       { label: "Quero comprar", href: "/contato" },
       { label: "Fale com a Macunaíma", href: "/contato" },
+      { label: "Onde nos encontrar", href: "/onde-nos-encontrar" },
     ],
   },
 ];
@@ -101,6 +103,75 @@ export const heroSlides: HeroSlide[] = [
       { label: "Conheça a origem", href: "/#origem", variant: "outline-light" },
     ],
     tag: "Grupo Macunaíma",
+  },
+];
+
+// Unidades (página "Onde nos encontrar"), conforme o site atual da Macunaíma
+export type Unit = {
+  slug: string;
+  city: string;
+  uf: string;
+  kind: "Matriz" | "Distribuidora";
+  name: string;
+  segment: string;
+  address?: string;
+  phone: string;
+  whatsapp?: string; // só dígitos, com DDI
+  maps: string;
+  products: string[];
+};
+
+export const units: Unit[] = [
+  {
+    slug: "inhangapi",
+    city: "Inhangapi",
+    uf: "PA",
+    kind: "Matriz",
+    name: "Agroindústria Açaí Macunaíma",
+    segment: "Atacado",
+    phone: "(91) 3809-1101",
+    whatsapp: "559188145471",
+    maps: "https://maps.app.goo.gl/RJcbERxXFCY5qc4K7",
+    products: ["Açaí 8%", "Açaí 12%", "Açaí 12% · 100 g", "Açaí 14%"],
+  },
+  {
+    slug: "recife",
+    city: "Recife",
+    uf: "PE",
+    kind: "Distribuidora",
+    name: "Açaí Distribuidora",
+    segment: "Varejo e atacado",
+    address: "Av. Getúlio Vargas, 635 · Curado, Recife - PE",
+    phone: "(81) 3252-1659",
+    whatsapp: "5581988055937",
+    maps: "https://www.google.com/maps/search/?api=1&query=Av.+Get%C3%BAlio+Vargas,+635+-+Curado,+Recife+-+PE",
+    products: ["Creme de açaí · balde", "Açaí 12%", "Açaí 12% · 100 g", "Açaí 14%"],
+  },
+  {
+    slug: "fortaleza",
+    city: "Fortaleza",
+    uf: "CE",
+    kind: "Distribuidora",
+    name: "Açaí Distribuidora",
+    segment: "Varejo e atacado",
+    address: "Rua E, 92 · Cajazeiras, Fortaleza - CE · 60864-467",
+    phone: "(85) 4102-9052",
+    // WhatsApp [A CONFIRMAR]: no site atual o link aponta para um número genérico
+    maps: "https://www.google.com/maps/search/?api=1&query=Rua+E+92+Cajazeiras+60864-467+Fortaleza+CE",
+    products: ["Creme de açaí · balde", "Açaí 12%", "Açaí 14%"],
+  },
+  {
+    slug: "natal",
+    city: "Natal",
+    uf: "RN",
+    kind: "Distribuidora",
+    name: "Açaí Distribuidora",
+    segment: "Varejo e atacado",
+    address: "Rua João Pessoa, 267, sala 614 · Edifício Cidade do Natal, Cidade Alta, Natal - RN (em frente à catedral)",
+    phone: "(84) 2132-9407",
+    whatsapp: "5584991911546",
+    maps: "https://www.google.com/maps/search/?api=1&query=Rua+Jo%C3%A3o+Pessoa,+267,+Cidade+Alta,+Natal+-+RN",
+    products: ["Açaí 12%", "Açaí 14%"],
   },
 ];
 
