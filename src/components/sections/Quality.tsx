@@ -78,8 +78,8 @@ const items: {
     title: "Rastreabilidade",
     text: "O sistema de rastreabilidade permite identificar internamente a região de origem da matéria-prima utilizada em cada lote.",
     label: "Etiqueta de lote sendo conferida no estoque",
-    src: "/qualidade/rastreabilidade.jpg",
-    alt: "Colaborador lendo o código de barras de um lote de polpa com coletor de dados",
+    src: "/qualidade/rastreabilidade-v2.png",
+    alt: "Colaborador conferindo pacote de polpa Macunaíma com coletor de dados no estoque",
     tone: "acai",
     icon: (
       <>
