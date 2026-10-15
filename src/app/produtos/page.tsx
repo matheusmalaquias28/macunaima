@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Fragment } from "react";
-import Media from "@/components/ui/Media";
 import { Arrow } from "@/components/ui/Button";
 import Applications from "@/components/sections/Applications";
 import FinalCta from "@/components/sections/FinalCta";
-import { products, sorbetLine, sorbets } from "@/lib/site";
+import ProductCarousel from "@/components/ui/ProductCarousel";
+import { portfolio, products, sorbetLine, sorbets } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Produtos",
@@ -21,9 +21,8 @@ export default function ProdutosPage() {
   return (
     <>
       <PageHero />
-      <AcaiLine />
+      <Catalog />
       <Applications cta={false} />
-      <SorbetLine />
       <FinalCta />
     </>
   );
@@ -99,118 +98,51 @@ function PageHero() {
   );
 }
 
-function AcaiLine() {
+function Catalog() {
+  const acaiCount = portfolio.filter((item) => item.line === "Açaí").length;
   return (
     <section
       id="linha-acai"
       aria-labelledby="linha-acai-title"
-      className="relative -mt-10 rounded-t-[2.5rem] bg-nevoa py-24 md:-mt-16 md:rounded-t-[4rem] md:py-36"
+      className="relative -mt-10 scroll-mt-28 rounded-t-[2.5rem] bg-nevoa py-24 md:-mt-16 md:rounded-t-[4rem] md:py-36"
     >
       <div className="gutter grid gap-8 lg:grid-cols-12">
         <div className="lg:col-span-7">
           <p className="eyebrow mb-6 text-acai-soft" data-reveal="up">
-            Linha Açaí
+            Portfólio
           </p>
           <h2 id="linha-acai-title" className="t-display text-acai-ink [&_em]:text-acai" data-split>
-            Açaí para diferentes <em>necessidades</em> e aplicações.
-          </h2>
-        </div>
-        <p className="t-lead self-end text-acai-ink/70 lg:col-span-4 lg:col-start-9" data-reveal="up">
-          Polpas de açaí indicadas para consumo direto ou para utilização na fabricação de outros produtos.
-        </p>
-      </div>
-
-      <ul className="gutter mt-16 grid gap-x-5 gap-y-12 sm:grid-cols-2 md:mt-24 xl:grid-cols-4">
-        {products.map((p) => (
-          <li key={p.slug} id={p.slug} className="scroll-mt-24" data-reveal="up">
-            <article>
-              <Media
-                src={p.photo}
-                alt={p.alt}
-                label={p.alt}
-                className="aspect-[4/5] rounded-[1.75rem] bg-acai"
-                sizes="(min-width: 1280px) 25vw, (min-width: 640px) 50vw, 100vw"
-                reveal={false}
-              >
-                <span className="absolute left-4 top-4 rounded-full bg-white px-4 py-2 font-display text-sm font-semibold text-acai md:left-5 md:top-5">
-                  {p.weight}
-                </span>
-              </Media>
-              <div className="px-1 pt-6">
-                <h3 className="font-display text-2xl font-semibold tracking-[-0.03em] text-acai">
-                  Açaí {p.concentration}
-                </h3>
-                <p className="mt-3 max-w-sm text-[0.98rem] leading-relaxed text-acai-ink/70">{p.text}</p>
-              </div>
-            </article>
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
-function SorbetLine() {
-  return (
-    <section
-      id="linha-sorbet"
-      aria-labelledby="linha-sorbet-title"
-      className="relative rounded-t-[2.5rem] bg-nevoa py-24 md:rounded-t-[4rem] md:py-36"
-    >
-      <div className="gutter grid gap-8 lg:grid-cols-12">
-        <div className="lg:col-span-7">
-          <p className="eyebrow mb-6 text-acai-soft" data-reveal="up">
-            Linha Sorbet
-          </p>
-          <h2 id="linha-sorbet-title" className="t-display text-acai-ink [&_em]:text-acai" data-split>
-            Mais possibilidades para o seu <em>portfólio.</em>
+            Cada produto, com o detalhe para a <em>compra.</em>
           </h2>
         </div>
         <div className="flex flex-col justify-end gap-8 lg:col-span-4 lg:col-start-9" data-reveal="up">
-          <p className="t-lead text-acai-ink/70">{sorbetLine.text}</p>
-          <dl className="grid grid-cols-2 gap-6 border-t border-acai/15 pt-6">
+          <p className="t-lead text-acai-ink/70">
+            Polpas de açaí e a Linha Sorbet no mesmo carrossel. Passe para o lado para ver concentração, sabor e
+            embalagem de cada item.
+          </p>
+          <dl className="grid grid-cols-3 gap-4 border-t border-acai/15 pt-6">
             <div>
-              <dt className="eyebrow text-acai-ink/50">Sabores</dt>
+              <dt className="eyebrow text-acai-ink/50">Açaí</dt>
+              <dd className="mt-2 font-display text-3xl font-semibold tracking-[-0.04em] text-acai">{acaiCount}</dd>
+            </div>
+            <div>
+              <dt className="eyebrow text-acai-ink/50">Sorbets</dt>
               <dd className="mt-2 font-display text-3xl font-semibold tracking-[-0.04em] text-acai">{sorbets.length}</dd>
             </div>
             <div>
-              <dt className="eyebrow text-acai-ink/50">Embalagem</dt>
-              <dd className="mt-2 font-display text-3xl font-semibold tracking-[-0.04em] text-acai">
-                {sorbetLine.packaging}
+              <dt className="eyebrow text-acai-ink/50">Embalagens</dt>
+              <dd className="mt-2 font-display text-xl font-semibold leading-tight tracking-[-0.04em] text-acai">
+                1,02 kg
+                <span className="mt-1 block text-base font-medium text-acai-ink/50">{sorbetLine.packaging}</span>
               </dd>
             </div>
           </dl>
         </div>
       </div>
 
-      <ul className="gutter mt-16 grid grid-cols-2 gap-3 sm:gap-5 md:mt-24 md:grid-cols-3 xl:grid-cols-5">
-        {sorbets.map((fl) => (
-          <li
-            key={fl.name}
-            className="group rounded-[1.5rem] p-2.5 md:rounded-[1.75rem]"
-            style={{ backgroundColor: fl.bg, color: fl.ink }}
-            data-reveal="up"
-          >
-            <Media
-              src={fl.src}
-              alt={`Embalagem de ${sorbetLine.packaging} do Sorbet ${fl.name} Macunaíma ao lado de uma taça com bolas de sorbet`}
-              label={`Pote de Sorbet ${fl.name} ${sorbetLine.packaging} com a fruta ao lado`}
-              tone="custom"
-              reveal={false}
-              sizes="(min-width: 1280px) 20vw, (min-width: 768px) 33vw, 50vw"
-              className="aspect-[3/4] rounded-[1.1rem] md:rounded-[1.25rem]"
-              style={{ "--ph-a": fl.a, "--ph-b": fl.b, "--ph-c": fl.bg } as React.CSSProperties}
-            />
-            <div className="px-2 pb-2 pt-4 md:px-3 md:pt-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.16em] opacity-60">Sorbet</p>
-              <h3 className="mt-1 font-display text-xl font-semibold leading-tight tracking-[-0.03em] md:text-2xl">
-                {fl.name}
-              </h3>
-              <p className="mt-1 text-sm opacity-70">{sorbetLine.packaging}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <div className="mt-12 md:mt-16">
+        <ProductCarousel items={portfolio} variant="detail" />
+      </div>
     </section>
   );
 }

@@ -7,7 +7,7 @@ import { units, type Unit } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Onde nos encontrar",
   description:
-    "Matriz da Macunaíma em Inhangapi (PA) e distribuidoras em Recife, Fortaleza e Natal. Telefones, WhatsApp e localização de cada unidade.",
+    "Matriz da Macunaíma em Inhangapi (PA) e distribuidoras em Recife e Fortaleza. Telefones, WhatsApp e localização de cada unidade.",
 };
 
 const tel = (p: string) => `tel:+55${p.replace(/\D/g, "")}`;
@@ -133,7 +133,7 @@ export default function OndeNosEncontrarPage() {
 
         {/* Índice das unidades */}
         <nav aria-label="Unidades" className="gutter mt-14 md:mt-20" data-reveal="up">
-          <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-[1.5rem] border border-white/15 bg-white/15 md:grid-cols-4 md:rounded-[2rem]">
+          <ul className="grid grid-cols-1 gap-px overflow-hidden rounded-[1.5rem] border border-white/15 bg-white/15 sm:grid-cols-3 md:rounded-[2rem]">
             {units.map((u, i) => (
               <li key={u.slug}>
                 <a
@@ -241,7 +241,7 @@ export default function OndeNosEncontrarPage() {
             </p>
           </div>
 
-          <ul className="grid gap-5 md:grid-cols-3 md:gap-[clamp(14px,1.6vw,28px)]">
+          <ul className="grid gap-5 md:grid-cols-2 md:gap-[clamp(14px,1.6vw,28px)]">
             {distribuidoras.map((u, i) => (
               <li key={u.slug} id={u.slug} className="scroll-mt-28" data-reveal="up">
                 <article

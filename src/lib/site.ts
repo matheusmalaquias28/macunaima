@@ -28,11 +28,10 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
   {
     title: "Produtos",
     links: [
-      { label: "Açaí 8% · 1,02 kg", href: "/produtos/acai-8-1kg" },
-      { label: "Açaí 12% · 1,02 kg", href: "/produtos/acai-12-1kg" },
-      { label: "Açaí 12% · 100 g", href: "/produtos/acai-12-100g" },
-      { label: "Açaí 14% · 1,02 kg", href: "/produtos/acai-14-1kg" },
-      { label: "Linha Sorbet", href: "/linha-sorbet" },
+      { label: "Açaí 8% · 1,02 kg", href: "/produtos#acai-8-1kg" },
+      { label: "Açaí 12% · 1,02 kg", href: "/produtos#acai-12-1kg" },
+      { label: "Açaí 14% · 1,02 kg", href: "/produtos#acai-14-1kg" },
+      { label: "Linha Sorbet", href: "/produtos#linha-sorbet" },
     ],
   },
   {
@@ -55,8 +54,11 @@ export const socials = [
 
 export const contact = {
   phones: ["(91) 9 8545-5750", "(91) 9 8814-5471"],
-  email: "[A CONFIRMAR]",
-  address: "Pará, Brasil · endereço [A CONFIRMAR]",
+  email: "vendas@acaimacunaima.com.br",
+  address: "Travessa Benedito Miguel de Souza, 230 · Vila Nova, Inhangapi - PA",
+  maps: "https://maps.app.goo.gl/RJcbERxXFCY5qc4K7",
+  // WhatsApp comercial já usado no formulário de pedido
+  whatsapp: "5591985455750",
 };
 
 // Slides da hero (carrossel). Tudo é editável: fundo, textos e botões.
@@ -132,7 +134,7 @@ export const units: Unit[] = [
     phone: "(91) 3809-1101",
     whatsapp: "559188145471",
     maps: "https://maps.app.goo.gl/RJcbERxXFCY5qc4K7",
-    products: ["Açaí 8%", "Açaí 12%", "Açaí 12% · 100 g", "Açaí 14%"],
+    products: ["Açaí 8%", "Açaí 12%", "Açaí 14%"],
   },
   {
     slug: "recife",
@@ -145,7 +147,7 @@ export const units: Unit[] = [
     phone: "(81) 3252-1659",
     whatsapp: "5581988055937",
     maps: "https://www.google.com/maps/search/?api=1&query=Av.+Get%C3%BAlio+Vargas,+635+-+Curado,+Recife+-+PE",
-    products: ["Creme de açaí · balde", "Açaí 12%", "Açaí 12% · 100 g", "Açaí 14%"],
+    products: ["Creme de açaí · balde", "Açaí 12%", "Açaí 14%"],
   },
   {
     slug: "fortaleza",
@@ -159,19 +161,6 @@ export const units: Unit[] = [
     // WhatsApp [A CONFIRMAR]: no site atual o link aponta para um número genérico
     maps: "https://www.google.com/maps/search/?api=1&query=Rua+E+92+Cajazeiras+60864-467+Fortaleza+CE",
     products: ["Creme de açaí · balde", "Açaí 12%", "Açaí 14%"],
-  },
-  {
-    slug: "natal",
-    city: "Natal",
-    uf: "RN",
-    kind: "Distribuidora",
-    name: "Açaí Distribuidora",
-    segment: "Varejo e atacado",
-    address: "Rua João Pessoa, 267, sala 614 · Edifício Cidade do Natal, Cidade Alta, Natal - RN (em frente à catedral)",
-    phone: "(84) 2132-9407",
-    whatsapp: "5584991911546",
-    maps: "https://www.google.com/maps/search/?api=1&query=Rua+Jo%C3%A3o+Pessoa,+267,+Cidade+Alta,+Natal+-+RN",
-    products: ["Açaí 12%", "Açaí 14%"],
   },
 ];
 
@@ -205,14 +194,6 @@ export const products = [
     alt: "Embalagem de Açaí Macunaíma 12%, 1,02 kg",
   },
   {
-    slug: "acai-12-100g",
-    concentration: "12%",
-    weight: "100 g",
-    text: "Polpa de açaí em concentração de 12%, em embalagem de 100 g.",
-    photo: "/produtos/acai-12-100g.jpg",
-    alt: "Embalagem de Açaí Macunaíma 12%, 100 g",
-  },
-  {
     slug: "acai-14-1kg",
     concentration: "14%",
     weight: "1,02 kg",
@@ -234,4 +215,66 @@ export const sorbets: { name: string; bg: string; ink: string; a: string; b: str
   { name: "Maracujá", bg: "#F0D33C", ink: "#22011a", a: "#fff09a", b: "#c9a40f", src: "/sorbet/maracuja.jpg" },
   { name: "Pitaya", bg: "#C8175D", ink: "#ffffff", a: "#f0508f", b: "#7d0a37", src: "/sorbet/pitaya.jpg" },
   { name: "Blue Magic", bg: "#2C5BD8", ink: "#ffffff", a: "#6f97ff", b: "#16338a", src: "/sorbet/blue-magic.jpg" },
+];
+
+export type PortfolioItem = {
+  slug: string;
+  line: "Açaí" | "Sorbet";
+  title: string;
+  weight: string;
+  text: string;
+  detail: string;
+  photo?: string;
+  alt: string;
+  label: string;
+  specs: { label: string; value: string }[];
+  bg?: string;
+  ink?: string;
+  a?: string;
+  b?: string;
+};
+
+const sorbetSlug = (name: string) =>
+  `sorbet-${name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\s+/g, "-")}`;
+
+// Portfólio completo do carrossel: polpas de açaí e cada sabor da Linha Sorbet.
+export const portfolio: PortfolioItem[] = [
+  ...products.map((p) => ({
+    slug: p.slug,
+    line: "Açaí" as const,
+    title: `Açaí ${p.concentration}`,
+    weight: p.weight,
+    text: p.text,
+    detail: `Polpa de açaí em concentração de ${p.concentration}, em embalagem de ${p.weight}. Indicada para consumo direto ou para a fabricação de outros produtos, com o padrão industrial da Macunaíma no Pará.`,
+    photo: p.photo,
+    alt: p.alt,
+    label: p.alt,
+    specs: [
+      { label: "Linha", value: "Açaí" },
+      { label: "Concentração", value: p.concentration },
+      { label: "Embalagem", value: p.weight },
+      { label: "Origem", value: "Pará, Brasil" },
+    ],
+  })),
+  ...sorbets.map((f) => ({
+    slug: sorbetSlug(f.name),
+    line: "Sorbet" as const,
+    title: `Sorbet ${f.name}`,
+    weight: sorbetLine.packaging,
+    text: `Sorbet de ${f.name}, com frutas selecionadas e alta concentração de polpa.`,
+    detail: `${sorbetLine.text} O sabor ${f.name} é comercializado em embalagem de ${sorbetLine.packaging}.`,
+    photo: f.src,
+    alt: `Embalagem de ${sorbetLine.packaging} do Sorbet ${f.name} Macunaíma ao lado de uma taça com bolas de sorbet`,
+    label: `Pote de Sorbet ${f.name} ${sorbetLine.packaging} com a fruta ao lado`,
+    specs: [
+      { label: "Linha", value: "Sorbet" },
+      { label: "Sabor", value: f.name },
+      { label: "Embalagem", value: sorbetLine.packaging },
+      { label: "Origem", value: "Pará, Brasil" },
+    ],
+    bg: f.bg,
+    ink: f.ink,
+    a: f.a,
+    b: f.b,
+  })),
 ];

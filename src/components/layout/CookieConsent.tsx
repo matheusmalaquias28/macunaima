@@ -46,7 +46,7 @@ export default function CookieConsent() {
       role="dialog"
       aria-labelledby="cookie-title"
       aria-describedby="cookie-text"
-      className={`fixed inset-x-4 bottom-4 z-[80] max-w-[380px] rounded-[4px] bg-white p-5 text-acai-ink shadow-[0_24px_60px_-20px_rgba(34,1,26,0.45)] ring-1 ring-acai-ink/10 transition-[opacity,transform] duration-500 ease-[var(--ease-expo)] sm:left-auto sm:right-6 sm:bottom-6 ${
+      className={`fixed inset-x-4 bottom-[calc(5.5rem+env(safe-area-inset-bottom))] z-[80] max-w-[380px] rounded-[4px] bg-white p-5 text-acai-ink shadow-[0_24px_60px_-20px_rgba(34,1,26,0.45)] ring-1 ring-acai-ink/10 transition-[opacity,transform] duration-500 ease-[var(--ease-expo)] sm:left-auto sm:right-6 lg:bottom-28 ${
         shown ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
       }`}
     >

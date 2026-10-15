@@ -7,8 +7,7 @@ import { contact, products } from "@/lib/site";
 const businessTypes = ["Distribuidor", "Açaiteria / Franquia", "Indústria", "Food Service", "Varejo", "Outro"];
 const NOT_SURE = "Ainda não sei";
 const productOptions = [...products.map((p) => `Açaí ${p.concentration} — ${p.weight}`), "Sorbet", NOT_SURE];
-// TODO: faixas de quantidade aguardam definição do cliente
-const quantities = ["Opção 01", "Opção 02", "Opção 03", "Opção 04", NOT_SURE];
+const quantities = ["A partir de 1.000 kg (1 tonelada)", "15 toneladas", "Mais de 30 toneladas"];
 
 type Errors = Partial<Record<"nome" | "empresa" | "cnpj" | "whatsapp" | "email" | "local" | "tipo" | "produtos", string>>;
 
@@ -41,7 +40,7 @@ function maskPhone(v: string) {
 }
 
 // O pedido segue como mensagem pronta para o WhatsApp comercial
-const salesWhatsApp = `55${digits(contact.phones[0])}`;
+const salesWhatsApp = contact.whatsapp;
 
 export default function ContactForm() {
   const [cnpj, setCnpj] = useState("");

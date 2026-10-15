@@ -53,9 +53,13 @@ export default function Footer() {
             </a>
           ))}
           <p className={metaLabel}>E-mail</p>
-          <p className="text-white/55">{contact.email}</p>
+          <a href={`mailto:${contact.email}`} className={colLink}>
+            {contact.email}
+          </a>
           <p className={metaLabel}>Endereço</p>
-          <p className="text-white/55">{contact.address}</p>
+          <a href={contact.maps} target="_blank" rel="noopener noreferrer" className={`${colLink} max-w-[32ch] leading-relaxed`}>
+            {contact.address}
+          </a>
         </div>
       </div>
 

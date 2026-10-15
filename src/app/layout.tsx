@@ -5,6 +5,7 @@ import Preloader from "@/components/layout/Preloader";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CookieConsent from "@/components/layout/CookieConsent";
+import ConversionBar from "@/components/layout/ConversionBar";
 import "./globals.css";
 
 const bricolage = Bricolage_Grotesque({
@@ -40,12 +41,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>
-      <body>
+      <body className="pb-[calc(5.5rem+env(safe-area-inset-bottom))] lg:pb-0">
         <MotionProvider>
           <Preloader />
           <Header />
           <main>{children}</main>
           <Footer />
+          <ConversionBar />
           <CookieConsent />
         </MotionProvider>
       </body>

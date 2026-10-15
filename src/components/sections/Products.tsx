@@ -1,7 +1,5 @@
-import Link from "next/link";
-import Media from "@/components/ui/Media";
-import { Arrow } from "@/components/ui/Button";
-import { products } from "@/lib/site";
+import ProductCarousel from "@/components/ui/ProductCarousel";
+import { portfolio } from "@/lib/site";
 
 export default function Products() {
   return (
@@ -16,7 +14,7 @@ export default function Products() {
             Nossos produtos
           </p>
           <h2 id="produtos-title" className="t-title text-acai-ink [&_em]:text-acai" data-split>
-            <span className="lg:whitespace-nowrap">Açaí para diferentes</span>
+            <span className="lg:whitespace-nowrap">O portfólio para diferentes</span>
             <br />
             <em>necessidades</em> e
             <br />
@@ -25,50 +23,19 @@ export default function Products() {
         </div>
         <div className="flex flex-col justify-end gap-8 lg:col-span-5 lg:col-start-8">
           <p className="t-lead text-acai-ink/70" data-reveal="up">
-            A Macunaíma produz polpa de açaí em diferentes concentrações e formatos, atendendo diferentes
-            necessidades de seus clientes.
+            Polpas de açaí e a Linha Sorbet, em concentrações e sabores para consumo direto ou para a fabricação de
+            outros produtos.
           </p>
         </div>
       </div>
 
-      <ul className="gutter mt-16 grid gap-5 sm:grid-cols-2 md:mt-24 xl:grid-cols-4">
-        {products.map((p) => (
-          <li key={p.slug} data-reveal="up">
-            <Link href={`/produtos#${p.slug}`} className="group block">
-              <div className="relative overflow-hidden rounded-[1.75rem] transition-transform duration-700 ease-[var(--ease-expo)] group-hover:-translate-y-2">
-                <Media
-                  src={p.photo}
-                  alt={p.alt}
-                  label={p.alt}
-                  className="aspect-[4/5] bg-acai"
-                  sizes="(min-width: 1280px) 25vw, (min-width: 640px) 50vw, 100vw"
-                  reveal={false}
-                />
-                <span className="absolute bottom-5 right-5 grid size-14 place-items-center rounded-full bg-white text-acai transition-all duration-500 ease-[var(--ease-expo)] group-hover:rotate-[-45deg] group-hover:bg-folha">
-                  <Arrow className="size-5" />
-                </span>
-              </div>
-              <div className="px-1 pt-6">
-                <h3 className="font-display text-2xl font-semibold tracking-[-0.03em] text-acai">
-                  Açaí {p.concentration}
-                  <span className="ml-2 text-base font-medium text-acai-ink/50">{p.weight}</span>
-                </h3>
-                <p className="mt-3 max-w-sm text-[0.98rem] leading-relaxed text-acai-ink/70">{p.text}</p>
-                <span className="mt-5 inline-flex items-center gap-2 border-b border-acai/25 pb-1 text-sm font-semibold text-acai transition-colors group-hover:border-acai">
-                  <span className="btn-roll">
-                    <span>Conheça o produto</span>
-                    <span aria-hidden="true">Conheça o produto</span>
-                  </span>
-                </span>
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <div className="mt-12 md:mt-16">
+        <ProductCarousel items={portfolio} variant="card" />
+      </div>
 
       <div className="gutter mt-16 flex justify-center md:mt-20">
         <p className="border border-acai/25 px-6 py-3.5 text-center text-acai-ink/70 lg:whitespace-nowrap" data-reveal="up">
-          Polpas de açaí indicadas para consumo direto ou para utilização na fabricação de outros produtos.
+          Polpas de açaí e sorbets de fruta, produzidos no Pará para consumo direto ou para a fabricação de outros produtos.
         </p>
       </div>
     </section>
