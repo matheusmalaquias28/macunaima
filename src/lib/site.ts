@@ -53,12 +53,12 @@ export const socials = [
 ] as const;
 
 export const contact = {
-  phones: ["(91) 9 8545-5750", "(91) 9 8814-5471"],
+  phones: ["(91) 9 8630-7173", "(91) 9 8545-7504"],
   email: "vendas@acaimacunaima.com.br",
   address: "Travessa Benedito Miguel de Souza, 230 · Vila Nova, Inhangapi - PA",
   maps: "https://maps.app.goo.gl/RJcbERxXFCY5qc4K7",
   // WhatsApp comercial já usado no formulário de pedido
-  whatsapp: "5591985455750",
+  whatsapp: "5591988135471",
 };
 
 // Slides da hero (carrossel). Tudo é editável: fundo, textos e botões.
@@ -131,7 +131,7 @@ export const units: Unit[] = [
     kind: "Matriz",
     name: "Agroindústria Açaí Macunaíma",
     segment: "Atacado",
-    phone: "(91) 3809-1101",
+    phone: "(91) 98814-5471",
     whatsapp: "559188145471",
     maps: "https://maps.app.goo.gl/RJcbERxXFCY5qc4K7",
     products: ["Açaí 8%", "Açaí 12%", "Açaí 14%"],
@@ -144,7 +144,7 @@ export const units: Unit[] = [
     name: "Açaí Distribuidora",
     segment: "Varejo e atacado",
     address: "Av. Getúlio Vargas, 635 · Curado, Recife - PE",
-    phone: "(81) 3252-1659",
+    phone: "(81) 98805-5937",
     whatsapp: "5581988055937",
     maps: "https://www.google.com/maps/search/?api=1&query=Av.+Get%C3%BAlio+Vargas,+635+-+Curado,+Recife+-+PE",
     products: ["Creme de açaí · balde", "Açaí 12%", "Açaí 14%"],
@@ -157,7 +157,7 @@ export const units: Unit[] = [
     name: "Açaí Distribuidora",
     segment: "Varejo e atacado",
     address: "Rua E, 92 · Cajazeiras, Fortaleza - CE · 60864-467",
-    phone: "(85) 4102-9052",
+    phone: "(91) 98545-7504",
     // WhatsApp [A CONFIRMAR]: no site atual o link aponta para um número genérico
     maps: "https://www.google.com/maps/search/?api=1&query=Rua+E+92+Cajazeiras+60864-467+Fortaleza+CE",
     products: ["Creme de açaí · balde", "Açaí 12%", "Açaí 14%"],
