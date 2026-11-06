@@ -102,7 +102,7 @@ export default function Sorbet() {
           </div>
 
           <div className="mt-12 lg:mt-10" data-reveal="up">
-            <Button href="/linha-sorbet" variant={f.ink === "#ffffff" ? "light" : "acai"} size="lg">
+            <Button href="/produtos#linha-sorbet" variant={f.ink === "#ffffff" ? "light" : "acai"} size="lg">
               Conheça a linha Sorbet
             </Button>
           </div>

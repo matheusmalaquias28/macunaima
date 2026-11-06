@@ -6,6 +6,8 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CookieConsent from "@/components/layout/CookieConsent";
 import ConversionBar from "@/components/layout/ConversionBar";
+import HideOn from "@/components/layout/HideOn";
+import { JsonLd, ogImage, siteJsonLd, siteName, siteUrl } from "@/lib/seo";
 import "./globals.css";
 
 const bricolage = Bricolage_Grotesque({
@@ -20,12 +22,18 @@ const figtree = Figtree({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Macunaíma | Açaí da Amazônia, produzido no Pará para o mundo",
+    default: "Macunaíma | Polpa de açaí da Amazônia para empresas",
     template: "%s | Macunaíma",
   },
   description:
-    "Da origem do fruto à produção industrial, a Macunaíma transforma o açaí do Pará em polpas para empresas que precisam de qualidade, escala e consistência.",
+    "Indústria de polpa de açaí no Pará. Açaí 8%, 12% e 14% e Linha Sorbet para distribuidores, açaiterias, indústrias e food service, com qualidade e escala.",
+  applicationName: siteName,
+  openGraph: { type: "website", locale: "pt_BR", siteName, images: [ogImage] },
+  twitter: { card: "summary_large_image", images: [ogImage] },
+  // Evita que o iPhone transforme números (CNPJ, quantidades) em links de telefone
+  formatDetection: { telephone: false },
 };
 
 export const viewport: Viewport = {
@@ -42,12 +50,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>
       <body className="pb-[calc(5.5rem+env(safe-area-inset-bottom))] lg:pb-0">
+        <JsonLd data={siteJsonLd()} />
         <MotionProvider>
-          <Preloader />
-          <Header />
+          <HideOn>
+            <Preloader />
+            <Header />
+          </HideOn>
           <main>{children}</main>
-          <Footer />
-          <ConversionBar />
+          <HideOn>
+            <Footer />
+            <ConversionBar />
+          </HideOn>
           <CookieConsent />
         </MotionProvider>
       </body>

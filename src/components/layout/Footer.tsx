@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/components/ui/Logo";
-import { contact, footerNav, seals } from "@/lib/site";
+import SocialIcon from "@/components/ui/SocialIcon";
+import { contact, footerNav, seals, socials } from "@/lib/site";
 
 const colTitle = "caption mb-2.5 text-acai-mist";
 const colLink = "w-fit text-white/75 transition-colors duration-300 hover:text-white";
@@ -19,6 +20,21 @@ export default function Footer() {
           <p className="max-w-[16ch] font-display text-[clamp(20px,1.6vw,26px)] font-light leading-[1.05] tracking-[-0.011em] text-white/85">
             Açaí da Amazônia. Produzido no Pará para o mundo.
           </p>
+          <ul className="flex gap-2" aria-label="Redes sociais">
+            {socials.map((s) => (
+              <li key={s.label}>
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${s.label} da Macunaíma`}
+                  className="grid size-11 place-items-center rounded-full border border-white/20 text-white/80 transition-colors duration-300 hover:border-folha hover:bg-folha hover:text-acai-ink"
+                >
+                  <SocialIcon name={s.icon} className="size-[18px]" />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <nav aria-label={institucional.title} className="col-span-6 flex flex-col gap-2 text-[15px] lg:col-span-2 lg:col-start-6">

@@ -13,6 +13,15 @@ import Relationships from "@/components/sections/Relationships";
 import Sorbet from "@/components/sections/Sorbet";
 import FinalCta from "@/components/sections/FinalCta";
 import { heroSlides } from "@/lib/site";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Macunaíma | Polpa de açaí da Amazônia para empresas",
+  absoluteTitle: true,
+  description:
+    "Indústria de polpa de açaí no Pará. Açaí 8%, 12% e 14% e Linha Sorbet para distribuidores, açaiterias, indústrias e food service, com qualidade e escala.",
+  path: "/",
+});
 
 export default function Home() {
   return (

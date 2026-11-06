@@ -18,11 +18,11 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
     title: "Institucional",
     links: [
       { label: "Início", href: "/" },
-      { label: "A Macunaíma", href: "/a-macunaima" },
-      { label: "Nossa origem", href: "/origem" },
-      { label: "Estrutura", href: "/estrutura" },
-      { label: "Processo e qualidade", href: "/processo-e-qualidade" },
-      { label: "Exportação", href: "/exportacao" },
+      { label: "A Macunaíma", href: "/#a-macunaima" },
+      { label: "Nossa origem", href: "/#origem" },
+      { label: "Estrutura", href: "/#estrutura" },
+      { label: "Processo e qualidade", href: "/#qualidade" },
+      { label: "Exportação", href: "/#exportacao" },
     ],
   },
   {
@@ -44,21 +44,28 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
   },
 ];
 
-// TODO: substituir pelos perfis oficiais
+// Perfis oficiais (também vão para o Google como "sameAs" da organização)
 export const socials = [
-  { label: "Instagram", href: "#", icon: "instagram" },
-  { label: "LinkedIn", href: "#", icon: "linkedin" },
-  { label: "Facebook", href: "#", icon: "facebook" },
-  { label: "YouTube", href: "#", icon: "youtube" },
+  { label: "Instagram", href: "https://www.instagram.com/acaimacunaima/", icon: "instagram" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/acaimacunaima/", icon: "linkedin" },
+  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61577829443813", icon: "facebook" },
+  { label: "YouTube", href: "https://www.youtube.com/@macunaimaagroindustria4189", icon: "youtube" },
 ] as const;
 
 export const contact = {
-  phones: ["(91) 9 8630-7173", "(91) 9 8545-7504"],
+  phones: ["(91) 9 8814-5471", "(91) 9 8545-7504"],
   email: "vendas@acaimacunaima.com.br",
   address: "Travessa Benedito Miguel de Souza, 230 · Vila Nova, Inhangapi - PA",
   maps: "https://maps.app.goo.gl/RJcbERxXFCY5qc4K7",
-  // WhatsApp comercial já usado no formulário de pedido
+  // Chat/WhatsApp do site (botão flutuante e formulário de pedido)
   whatsapp: "5591988135471",
+  // Chaves do Web3Forms (web3forms.com): uma por e-mail que recebe os pedidos do formulário.
+  // O plano grátis manda para um e-mail por chave, então cada destinatário tem a sua.
+  // Chave vazia = esse e-mail ainda não recebe.
+  formKeys: [
+    { email: "vendas2@acaimacunaima.com.br", key: "f83356a2-618f-41cc-98f8-018564325d6d" },
+    { email: "rogerio.almeida@acaimacunaima.com.br", key: "758af218-e86d-4734-a545-3bb0a25564f8" },
+  ],
 };
 
 // Slides da hero (carrossel). Tudo é editável: fundo, textos e botões.
@@ -108,6 +115,35 @@ export const heroSlides: HeroSlide[] = [
   },
 ];
 
+// Link do WhatsApp com a mensagem padrão do site. Aceita o número com máscara, ex. "(91) 3809-1101".
+export const whatsappMessage = "Olá, vim através do site e gostaria de mais informações.";
+export function whatsappLink(phone: string, message = whatsappMessage) {
+  const d = phone.replace(/\D/g, "");
+  return `https://wa.me/${d.startsWith("55") && d.length > 11 ? d : `55${d}`}?text=${encodeURIComponent(message)}`;
+}
+
+// Página /links (link da bio do Instagram). Mesmos botões do Beacons, com a mensagem de cada unidade.
+export const bioLinks: { label: string; detail: string; phone: string; message: string }[] = [
+  {
+    label: "Macunaíma · Pará",
+    detail: "Matriz · atendimento comercial",
+    phone: "(91) 98814-5471",
+    message: "Olá, vim pelo Instagram e quero mais informações sobre os produtos.",
+  },
+  {
+    label: "Macunaíma · Ceará",
+    detail: "Fortaleza · varejo pela unidade",
+    phone: "(91) 98545-7504",
+    message: "Olá, vim pelo Instagram e quero comprar polpa de açaí no varejo pela unidade. Pode me passar as opções?",
+  },
+  {
+    label: "Macunaíma · Pernambuco",
+    detail: "Recife · grandes quantidades",
+    phone: "(81) 98805-5937",
+    message: "Olá, vim pelo Instagram e quero comprar açaí em grande quantidade.",
+  },
+];
+
 // Unidades (página "Onde nos encontrar"), conforme o site atual da Macunaíma
 export type Unit = {
   slug: string;
@@ -117,8 +153,7 @@ export type Unit = {
   name: string;
   segment: string;
   address?: string;
-  phone: string;
-  whatsapp?: string; // só dígitos, com DDI
+  phone: string; // número exibido; o botão de WhatsApp da unidade usa este mesmo número
   maps: string;
   products: string[];
 };
@@ -132,7 +167,6 @@ export const units: Unit[] = [
     name: "Agroindústria Açaí Macunaíma",
     segment: "Atacado",
     phone: "(91) 98814-5471",
-    whatsapp: "559188145471",
     maps: "https://maps.app.goo.gl/RJcbERxXFCY5qc4K7",
     products: ["Açaí 8%", "Açaí 12%", "Açaí 14%"],
   },
@@ -145,7 +179,6 @@ export const units: Unit[] = [
     segment: "Varejo e atacado",
     address: "Av. Getúlio Vargas, 635 · Curado, Recife - PE",
     phone: "(81) 98805-5937",
-    whatsapp: "5581988055937",
     maps: "https://www.google.com/maps/search/?api=1&query=Av.+Get%C3%BAlio+Vargas,+635+-+Curado,+Recife+-+PE",
     products: ["Creme de açaí · balde", "Açaí 12%", "Açaí 14%"],
   },
@@ -158,7 +191,6 @@ export const units: Unit[] = [
     segment: "Varejo e atacado",
     address: "Rua E, 92 · Cajazeiras, Fortaleza - CE · 60864-467",
     phone: "(91) 98545-7504",
-    // WhatsApp [A CONFIRMAR]: no site atual o link aponta para um número genérico
     maps: "https://www.google.com/maps/search/?api=1&query=Rua+E+92+Cajazeiras+60864-467+Fortaleza+CE",
     products: ["Creme de açaí · balde", "Açaí 12%", "Açaí 14%"],
   },

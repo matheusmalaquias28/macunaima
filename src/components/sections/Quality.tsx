@@ -164,7 +164,7 @@ export default function Quality() {
                 {pad(active + 1)}/{pad(items.length)}
               </span>
             </div>
-            <Button href="/processo-e-qualidade" variant="acai" className="mt-6">
+            <Button href="/#certificacoes" variant="acai" className="mt-6">
               Conheça nosso processo e qualidade
             </Button>
           </div>
@@ -206,7 +206,7 @@ export default function Quality() {
             ))}
           </ul>
           <div className="mt-10 lg:hidden" data-reveal="up">
-            <Button href="/processo-e-qualidade" variant="acai" size="lg">
+            <Button href="/#certificacoes" variant="acai" size="lg">
               Conheça nosso processo e qualidade
             </Button>
           </div>

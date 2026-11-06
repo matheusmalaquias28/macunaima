@@ -127,7 +127,7 @@ export default function Harvest() {
       </dl>
 
       <div className="gutter mt-[clamp(40px,4vw,64px)]" data-reveal="up">
-        <Button href="/estrutura" variant="light">
+        <Button href="/#a-macunaima" variant="light">
           Conheça nossa estrutura
         </Button>
       </div>

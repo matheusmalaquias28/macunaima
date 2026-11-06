@@ -99,7 +99,9 @@ export default function MobileMenu({ open, onClose }: { open: boolean; onClose: 
                 <li key={s.label}>
                   <a
                     href={s.href}
-                    aria-label={s.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${s.label} da Macunaíma`}
                     className="grid size-11 place-items-center rounded-full border border-white/20 transition-colors hover:border-folha hover:bg-folha hover:text-acai-ink"
                   >
                     <SocialIcon name={s.icon} className="size-[18px]" />

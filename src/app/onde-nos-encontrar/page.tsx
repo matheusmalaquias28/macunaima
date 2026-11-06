@@ -2,13 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Arrow } from "@/components/ui/Button";
 import FinalCta from "@/components/sections/FinalCta";
-import { units, type Unit } from "@/lib/site";
+import { units, whatsappLink, type Unit } from "@/lib/site";
+import { JsonLd, breadcrumbJsonLd, pageMetadata, unitsJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Onde nos encontrar",
+export const metadata: Metadata = pageMetadata({
+  title: "Onde comprar açaí: Pará, Recife e Fortaleza",
   description:
-    "Matriz da Macunaíma em Inhangapi (PA) e distribuidoras em Recife e Fortaleza. Telefones, WhatsApp e localização de cada unidade.",
-};
+    "Matriz da Macunaíma em Inhangapi (PA) e distribuidoras de açaí em Recife (PE) e Fortaleza (CE). Telefone, WhatsApp e localização de cada unidade.",
+  path: "/onde-nos-encontrar",
+});
 
 const tel = (p: string) => `tel:+55${p.replace(/\D/g, "")}`;
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -53,19 +55,17 @@ function Actions({ unit, onDark = false }: { unit: Unit; onDark?: boolean }) {
   const chip = "grid size-8 place-items-center rounded-full bg-current/10";
   return (
     <div className="flex flex-wrap gap-3">
-      {unit.whatsapp && (
-        <a
-          href={`https://wa.me/${unit.whatsapp}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`${base} ${onDark ? "bg-folha text-acai-ink hover:bg-white" : "bg-acai text-white hover:bg-acai-ink"}`}
-        >
-          Fale conosco
-          <span className={chip}>
-            <Icon name="whatsapp" className="size-4" />
-          </span>
-        </a>
-      )}
+      <a
+        href={whatsappLink(unit.phone)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${base} ${onDark ? "bg-folha text-acai-ink hover:bg-white" : "bg-acai text-white hover:bg-acai-ink"}`}
+      >
+        Fale conosco
+        <span className={chip}>
+          <Icon name="whatsapp" className="size-4" />
+        </span>
+      </a>
       <a
         href={unit.maps}
         target="_blank"
@@ -107,6 +107,8 @@ export default function OndeNosEncontrarPage() {
 
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd("Onde nos encontrar", "/onde-nos-encontrar")} />
+      <JsonLd data={unitsJsonLd()} />
       {/* Abertura */}
       <section aria-labelledby="encontrar-title" className="relative bg-acai pb-28 pt-40 text-white md:pb-40 md:pt-52">
         <div className="gutter grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-10">

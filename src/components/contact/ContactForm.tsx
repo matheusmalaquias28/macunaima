@@ -42,6 +42,26 @@ function maskPhone(v: string) {
 // O pedido segue como mensagem pronta para o WhatsApp comercial
 const salesWhatsApp = contact.whatsapp;
 
+// Cópia do pedido por e-mail via Web3Forms, uma chamada por destinatário. Roda em segundo
+// plano: se falhar, o WhatsApp já foi aberto e o visitante não fica travado.
+function sendByEmail(fields: Record<string, string>) {
+  for (const { key } of contact.formKeys) {
+    if (!key) continue;
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      keepalive: true,
+      body: JSON.stringify({
+        access_key: key,
+        subject: `Novo pedido pelo site: ${fields.Empresa}`,
+        from_name: "Site Macunaíma",
+        ...(fields["E-mail"] !== "—" ? { replyto: fields["E-mail"] } : {}),
+        ...fields,
+      }),
+    }).catch(() => {});
+  }
+}
+
 export default function ContactForm() {
   const [cnpj, setCnpj] = useState("");
   const [phone, setPhone] = useState("");
@@ -99,6 +119,17 @@ export default function ContactForm() {
     ].filter((l) => l !== null);
     const url = `https://wa.me/${salesWhatsApp}?text=${encodeURIComponent(lines.join("\n"))}`;
     window.open(url, "_blank", "noopener");
+    sendByEmail({
+      Nome: get("nome"),
+      Empresa: get("empresa"),
+      CNPJ: cnpj,
+      WhatsApp: phone,
+      "E-mail": get("email") || "—",
+      "Onde está": get("local"),
+      "Tipo de negócio": get("tipo"),
+      "Produtos de interesse": picked.join(", "),
+      Quantidade: get("quantidade") || "—",
+    });
     setSentUrl(url);
   };
 

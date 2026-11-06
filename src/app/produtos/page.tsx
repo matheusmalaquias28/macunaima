@@ -5,12 +5,14 @@ import Applications from "@/components/sections/Applications";
 import FinalCta from "@/components/sections/FinalCta";
 import ProductCarousel from "@/components/ui/ProductCarousel";
 import { portfolio, products, sorbetLine, sorbets } from "@/lib/site";
+import { JsonLd, breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Produtos",
+export const metadata: Metadata = pageMetadata({
+  title: "Polpa de açaí 8%, 12% e 14% e Linha Sorbet",
   description:
-    "Polpas de açaí em diferentes concentrações e formatos e Linha Sorbet em 5 sabores, produzidas pela Macunaíma no Pará.",
-};
+    "Polpa de açaí Macunaíma 8%, 12% e 14% em embalagem de 1,02 kg e Linha Sorbet em 5 sabores (5 litros). Produzidos no Pará para revenda, food service e indústria.",
+  path: "/produtos",
+});
 
 // "8%, 12% e 14%"
 const joinPt = (items: string[]) =>
@@ -20,6 +22,7 @@ const unique = (items: string[]) => [...new Set(items)];
 export default function ProdutosPage() {
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd("Produtos", "/produtos")} />
       <PageHero />
       <Catalog />
       <Applications cta={false} />

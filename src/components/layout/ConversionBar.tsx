@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { contact } from "@/lib/site";
+import { contact, whatsappLink } from "@/lib/site";
 
-const whatsappHref = `https://wa.me/${contact.whatsapp}`;
+const whatsappHref = whatsappLink(contact.whatsapp);
 
 export default function ConversionBar() {
   return (

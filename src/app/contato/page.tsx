@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
 import ContactForm from "@/components/contact/ContactForm";
 import { contact } from "@/lib/site";
+import { JsonLd, breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Quero comprar",
-  description: "Fale com a equipe comercial da Macunaíma e conte um pouco sobre o que você procura.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Comprar açaí no atacado: fale com o comercial",
+  description:
+    "Peça cotação de polpa de açaí e sorbets para o seu negócio. Preencha o formulário e fale com a equipe comercial da Macunaíma pelo WhatsApp.",
+  path: "/contato",
+});
 
 const tel = (p: string) => `tel:+55${p.replace(/\D/g, "")}`;
 
 export default function ContatoPage() {
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd("Quero comprar", "/contato")} />
       <section aria-labelledby="contato-title" className="relative bg-acai pb-28 pt-40 text-white md:pb-40 md:pt-52">
         <div className="gutter grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-10">
           <div className="lg:col-span-8">
