@@ -54,6 +54,8 @@ export const socials = [
 
 export const contact = {
   phones: ["(91) 8814-5471", "(91) 8545-7504"],
+  // "Prefere ligar?" da página de contato: contato da indústria
+  contactPagePhones: ["(91) 8814-5471"],
   email: "vendas@acaimacunaima.com.br",
   address: "Travessa Benedito Miguel de Souza, 230 · Vila Nova, Inhangapi - PA",
   maps: "https://maps.app.goo.gl/RJcbERxXFCY5qc4K7",

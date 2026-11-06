@@ -44,7 +44,7 @@ export default function ContatoPage() {
             <div className="lg:sticky lg:top-28">
               <p className="caption mb-5 text-acai-soft">Prefere ligar?</p>
               <ul className="grid gap-2">
-                {contact.phones.map((p) => (
+                {contact.contactPagePhones.map((p) => (
                   <li key={p}>
                     <a
                       href={tel(p)}
