@@ -53,12 +53,12 @@ export const socials = [
 ] as const;
 
 export const contact = {
-  phones: ["(91) 9 8814-5471", "(91) 9 8545-7504"],
+  phones: ["(91) 8814-5471", "(91) 8545-7504"],
   email: "vendas@acaimacunaima.com.br",
   address: "Travessa Benedito Miguel de Souza, 230 · Vila Nova, Inhangapi - PA",
   maps: "https://maps.app.goo.gl/RJcbERxXFCY5qc4K7",
   // Chat/WhatsApp do site (botão flutuante e formulário de pedido)
-  whatsapp: "5591988135471",
+  whatsapp: "559188135471",
   // Chaves do Web3Forms (web3forms.com): uma por e-mail que recebe os pedidos do formulário.
   // O plano grátis manda para um e-mail por chave, então cada destinatário tem a sua.
   // Chave vazia = esse e-mail ainda não recebe.
@@ -127,19 +127,19 @@ export const bioLinks: { label: string; detail: string; phone: string; message: 
   {
     label: "Macunaíma · Pará",
     detail: "Matriz · atendimento comercial",
-    phone: "(91) 98814-5471",
+    phone: "(91) 8814-5471",
     message: "Olá, vim pelo Instagram e quero mais informações sobre os produtos.",
   },
   {
     label: "Macunaíma · Ceará",
     detail: "Fortaleza · varejo pela unidade",
-    phone: "(91) 98545-7504",
+    phone: "(91) 8545-7504",
     message: "Olá, vim pelo Instagram e quero comprar polpa de açaí no varejo pela unidade. Pode me passar as opções?",
   },
   {
     label: "Macunaíma · Pernambuco",
     detail: "Recife · grandes quantidades",
-    phone: "(81) 98805-5937",
+    phone: "(81) 8805-5937",
     message: "Olá, vim pelo Instagram e quero comprar açaí em grande quantidade.",
   },
 ];
@@ -166,7 +166,7 @@ export const units: Unit[] = [
     kind: "Matriz",
     name: "Agroindústria Açaí Macunaíma",
     segment: "Atacado",
-    phone: "(91) 98814-5471",
+    phone: "(91) 8814-5471",
     maps: "https://maps.app.goo.gl/RJcbERxXFCY5qc4K7",
     products: ["Açaí 8%", "Açaí 12%", "Açaí 14%"],
   },
@@ -178,7 +178,7 @@ export const units: Unit[] = [
     name: "Açaí Distribuidora",
     segment: "Varejo e atacado",
     address: "Av. Getúlio Vargas, 635 · Curado, Recife - PE",
-    phone: "(81) 98805-5937",
+    phone: "(81) 8805-5937",
     maps: "https://www.google.com/maps/search/?api=1&query=Av.+Get%C3%BAlio+Vargas,+635+-+Curado,+Recife+-+PE",
     products: ["Creme de açaí · balde", "Açaí 12%", "Açaí 14%"],
   },
@@ -190,7 +190,7 @@ export const units: Unit[] = [
     name: "Açaí Distribuidora",
     segment: "Varejo e atacado",
     address: "Rua E, 92 · Cajazeiras, Fortaleza - CE · 60864-467",
-    phone: "(91) 98545-7504",
+    phone: "(91) 8545-7504",
     maps: "https://www.google.com/maps/search/?api=1&query=Rua+E+92+Cajazeiras+60864-467+Fortaleza+CE",
     products: ["Creme de açaí · balde", "Açaí 12%", "Açaí 14%"],
   },
