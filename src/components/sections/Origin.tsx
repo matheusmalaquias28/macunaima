@@ -11,7 +11,7 @@ import { useLenis } from "@/components/motion/MotionProvider";
 const journey = [
   {
     name: "Açaizal",
-    src: "/origem/01-acaizal-v2.webp",
+    src: "/origem/01-acaizal-v3.webp",
     alt: "Cacho de açaí maduro no alto do açaizeiro, contra o céu azul",
     icon: (
       <>
@@ -24,7 +24,7 @@ const journey = [
   },
   {
     name: "Coleta",
-    src: "/origem/02-coleta-v2.png",
+    src: "/origem/02-coleta-v3.webp",
     alt: "Mãos de coletor despejando frutos de açaí em cesto de palha",
     icon: (
       <>
@@ -49,7 +49,7 @@ const journey = [
   },
   {
     name: "Produção",
-    src: "/origem/04-producao-v2.png",
+    src: "/origem/04-producao-v3.webp",
     alt: "Frutos de açaí passando pela higienização na linha industrial",
     icon: (
       <>

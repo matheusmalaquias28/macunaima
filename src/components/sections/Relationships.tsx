@@ -38,7 +38,7 @@ export default function Relationships() {
         <div className="relative h-[520px] sm:h-[640px] lg:col-span-6 lg:h-[760px]">
           <div className="absolute right-0 top-0 w-[72%] rotate-[3deg]" data-reveal="up">
             <Media
-              src="/relacionamentos/bone-embalagens.webp"
+              src="/relacionamentos/bone-embalagens-v2.webp"
               alt="Boné do Grupo Macunaíma sobre cesto de açaí, com pacotes de polpa Macunaíma ao fundo"
               sizes="(min-width: 1024px) 36vw, 72vw"
               label="Boné e embalagens Macunaíma"

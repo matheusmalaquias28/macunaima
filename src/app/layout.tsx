@@ -5,6 +5,7 @@ import Preloader from "@/components/layout/Preloader";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CookieConsent from "@/components/layout/CookieConsent";
+import MetaPixel from "@/components/layout/MetaPixel";
 import ConversionBar from "@/components/layout/ConversionBar";
 import HideOn from "@/components/layout/HideOn";
 import { JsonLd, ogImage, siteJsonLd, siteName, siteUrl } from "@/lib/seo";
@@ -62,6 +63,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <ConversionBar />
           </HideOn>
           <CookieConsent />
+          <MetaPixel />
         </MotionProvider>
       </body>
     </html>

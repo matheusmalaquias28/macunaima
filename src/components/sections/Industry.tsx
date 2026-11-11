@@ -33,8 +33,8 @@ export default function Industry() {
 
       <div className="gutter mt-16 grid gap-14 md:mt-24 lg:grid-cols-12 lg:gap-10">
         <Media
-          videoSrc="/video/macunaima-industria.mp4"
-          poster="/video/macunaima-industria-poster.jpg"
+          videoSrc="/video/macunaima-industria-v2.mp4"
+          poster="/video/macunaima-industria-v2-poster.webp"
           label="Vídeo da linha de produção da Macunaíma"
           className="group aspect-[4/5] rounded-[1.75rem] lg:col-span-5 lg:aspect-auto lg:min-h-full"
           parallax={8}
@@ -60,7 +60,7 @@ export default function Industry() {
       </div>
 
       <Media
-        src="/empresa/planta-industrial-aerea.jpg"
+        src="/empresa/planta-industrial-aerea-v2.webp"
         alt="Vista aérea da planta industrial da Macunaíma cercada pela floresta"
         label="Panorâmica da planta industrial da Macunaíma"
         tone="deep"

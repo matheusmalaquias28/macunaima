@@ -20,7 +20,7 @@ const items: {
     title: "Controle da matéria-prima",
     text: "Os frutos são avaliados antes de serem liberados para a produção.",
     label: "Analista avaliando amostra de frutos na recepção",
-    src: "/qualidade/controle-materia-prima.jpg",
+    src: "/qualidade/controle-materia-prima-v3.webp",
     alt: "Analista de controle de qualidade avaliando frutos de açaí na recepção",
     tone: "acai",
     icon: (
