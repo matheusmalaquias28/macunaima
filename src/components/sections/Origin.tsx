@@ -49,7 +49,7 @@ const journey = [
   },
   {
     name: "Produção",
-    src: "/origem/04-producao-v3.webp",
+    src: "/origem/producao-maquina-menor.webp",
     alt: "Frutos de açaí passando pela higienização na linha industrial",
     icon: (
       <>

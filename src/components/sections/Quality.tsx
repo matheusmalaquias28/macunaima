@@ -35,7 +35,7 @@ const items: {
     title: "Higienização",
     text: "Os frutos passam por quatro tanques de higienização.",
     label: "Tanques de higienização com os frutos em água",
-    src: "/qualidade/higienizacao.jpg",
+    src: "/qualidade/producao-maquina-menor.webp",
     alt: "Frutos de açaí sendo lavados por jatos de água na linha de higienização da Macunaíma",
     tone: "deep",
     icon: (
