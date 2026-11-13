@@ -53,14 +53,14 @@ export const socials = [
 ] as const;
 
 export const contact = {
-  phones: ["(91) 8814-5471", "(91) 8545-7504"],
+  phones: ["(91) 9 8814-5471", "(91) 8545-7504"],
   // "Prefere ligar?" da página de contato: contato da indústria
-  contactPagePhones: ["(91) 8814-5471"],
+  contactPagePhones: ["(91) 9 8814-5471"],
   email: "vendas@acaimacunaima.com.br",
   address: "Travessa Benedito Miguel de Souza, 230 · Vila Nova, Inhangapi - PA",
   maps: "https://maps.app.goo.gl/RJcbERxXFCY5qc4K7",
   // Chat/WhatsApp do site (botão flutuante e formulário de pedido)
-  whatsapp: "559188135471",
+  whatsapp: "5591988145471",
   // Chaves do Web3Forms (web3forms.com): uma por e-mail que recebe os pedidos do formulário.
   // O plano grátis manda para um e-mail por chave, então cada destinatário tem a sua.
   // Chave vazia = esse e-mail ainda não recebe.
@@ -129,7 +129,7 @@ export const bioLinks: { label: string; detail: string; phone: string; message: 
   {
     label: "Macunaíma · Pará",
     detail: "Matriz · atendimento comercial",
-    phone: "(91) 8814-5471",
+    phone: "(91) 9 8814-5471",
     message: "Olá, vim pelo Instagram e quero mais informações sobre os produtos.",
   },
   {
@@ -168,7 +168,7 @@ export const units: Unit[] = [
     kind: "Matriz",
     name: "Agroindústria Açaí Macunaíma",
     segment: "Atacado",
-    phone: "(91) 8814-5471",
+    phone: "(91) 9 8814-5471",
     maps: "https://maps.app.goo.gl/RJcbERxXFCY5qc4K7",
     products: ["Açaí 8%", "Açaí 12%", "Açaí 14%"],
   },
