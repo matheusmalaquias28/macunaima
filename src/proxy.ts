@@ -3,7 +3,7 @@ import { contact, whatsappLink } from "@/lib/site";
 
 // Chave única do modo manutenção: true = site fora do ar para o público.
 // Para voltar ao ar, mude para false e dê push.
-const MAINTENANCE_MODE = true;
+const MAINTENANCE_MODE = false;
 
 const waLink = whatsappLink(contact.phones[0], "Olá, vi que o site está em manutenção e gostaria de falar com a equipe.");
 
