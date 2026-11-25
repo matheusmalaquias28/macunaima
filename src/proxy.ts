@@ -3,7 +3,10 @@ import { contact, whatsappLink } from "@/lib/site";
 
 // Chave única do modo manutenção: true = site fora do ar para o público.
 // Para voltar ao ar, mude para false e dê push.
-const MAINTENANCE_MODE = false;
+const MAINTENANCE_MODE = true;
+
+// Rotas que continuam acessíveis mesmo com o modo manutenção ligado.
+const MAINTENANCE_ALLOWLIST = ["/links"];
 
 const waLink = whatsappLink(contact.phones[0], "Olá, vi que o site está em manutenção e gostaria de falar com a equipe.");
 
@@ -84,6 +87,12 @@ const maintenanceHtml = `<!doctype html>
 
 export function proxy(request: NextRequest) {
   if (!MAINTENANCE_MODE) return NextResponse.next();
+
+  const { pathname } = request.nextUrl;
+  const isAllowed = MAINTENANCE_ALLOWLIST.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`)
+  );
+  if (isAllowed) return NextResponse.next();
 
   return new NextResponse(maintenanceHtml, {
     status: 503,
