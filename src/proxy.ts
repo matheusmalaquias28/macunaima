@@ -3,10 +3,10 @@ import { contact, whatsappLink } from "@/lib/site";
 
 // Chave única do modo manutenção: true = site fora do ar para o público.
 // Para voltar ao ar, mude para false e dê push.
-const MAINTENANCE_MODE = true;
+const MAINTENANCE_MODE = false;
 
 // Rotas que continuam acessíveis mesmo com o modo manutenção ligado.
-const MAINTENANCE_ALLOWLIST = ["/links"];
+const MAINTENANCE_ALLOWLIST = ["/links", "/en/links"];
 
 const waLink = whatsappLink(contact.phones[0], "Olá, vi que o site está em manutenção e gostaria de falar com a equipe.");
 
@@ -86,21 +86,35 @@ const maintenanceHtml = `<!doctype html>
 </html>`;
 
 export function proxy(request: NextRequest) {
-  if (!MAINTENANCE_MODE) return NextResponse.next();
-
   const { pathname } = request.nextUrl;
-  const isAllowed = MAINTENANCE_ALLOWLIST.some(
-    (route) => pathname === route || pathname.startsWith(`${route}/`)
-  );
-  if (isAllowed) return NextResponse.next();
 
-  return new NextResponse(maintenanceHtml, {
-    status: 503,
-    headers: {
-      "content-type": "text/html; charset=utf-8",
-      "retry-after": "3600",
-    },
-  });
+  // /pt/... é o mesmo conteúdo da URL sem prefixo: redireciona para não duplicar páginas
+  if (pathname === "/pt" || pathname.startsWith("/pt/")) {
+    const url = request.nextUrl.clone();
+    url.pathname = pathname.slice(3) || "/";
+    return NextResponse.redirect(url, 308);
+  }
+
+  if (MAINTENANCE_MODE) {
+    const isAllowed = MAINTENANCE_ALLOWLIST.some(
+      (route) => pathname === route || pathname.startsWith(`${route}/`)
+    );
+    if (!isAllowed) {
+      return new NextResponse(maintenanceHtml, {
+        status: 503,
+        headers: {
+          "content-type": "text/html; charset=utf-8",
+          "retry-after": "3600",
+        },
+      });
+    }
+  }
+
+  // Inglês já vem com o prefixo /en; o português (padrão) é servido internamente por /pt
+  if (pathname === "/en" || pathname.startsWith("/en/")) return NextResponse.next();
+  const url = request.nextUrl.clone();
+  url.pathname = `/pt${pathname === "/" ? "" : pathname}`;
+  return NextResponse.rewrite(url);
 }
 
 export const config = {

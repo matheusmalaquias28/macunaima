@@ -116,6 +116,16 @@ export default function MotionProvider({ children }: { children: React.ReactNode
           },
         });
 
+        // Blocos já visíveis (ou acima da tela, ao chegar por âncora) não esperam a rolagem
+        requestAnimationFrame(() => {
+          const limit = window.innerHeight * 0.88;
+          const now = gsap.utils
+            .toArray<HTMLElement>('[data-reveal="up"]')
+            .filter((el) => !el.dataset.revealed && el.getBoundingClientRect().top < limit);
+          now.forEach((el) => (el.dataset.revealed = "1"));
+          if (now.length) gsap.fromTo(now, { y: 48, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, ease: "expo.out", stagger: 0.06 });
+        });
+
         // Imagens com cortina + zoom interno
         gsap.utils.toArray<HTMLElement>('[data-reveal="img"]').forEach((el) => {
           const inner = el.querySelector("[data-media-inner]");

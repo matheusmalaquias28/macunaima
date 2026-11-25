@@ -3,12 +3,12 @@ import type { NextConfig } from "next";
 // URLs do site antigo (WordPress) que o Google já indexou → página equivalente no site novo.
 // Redirecionamento permanente preserva o ranqueamento e evita 404 para quem chega por links antigos.
 const legacyRedirects: [string, string][] = [
-  ["/a-macunaima", "/"],
+  ["/a-macunaima", "/quem-somos"],
   ["/nossas-certificacoes", "/#certificacoes"],
-  ["/nossos-produtos", "/produtos"],
-  ["/loja", "/produtos"],
-  ["/loja/:slug*", "/produtos"],
-  ["/categoria-produto/:slug*", "/produtos"],
+  ["/nossos-produtos", "/produtos/acai"],
+  ["/loja", "/produtos/acai"],
+  ["/loja/:slug*", "/produtos/acai"],
+  ["/categoria-produto/:slug*", "/produtos/acai"],
   ["/carrinho", "/contato"],
   ["/finalizar-compra", "/contato"],
   ["/minha-conta", "/contato"],
@@ -25,7 +25,12 @@ const nextConfig: NextConfig = {
     root: __dirname,
   },
   async redirects() {
-    return legacyRedirects.map(([source, destination]) => ({ source, destination, permanent: true }));
+    return [
+      ...legacyRedirects.map(([source, destination]) => ({ source, destination, permanent: true })),
+      // "Produtos" abre a Linha Açaí (o menu tem Açaí, Sorvete e Receitas)
+      { source: "/produtos", destination: "/produtos/acai", permanent: false },
+      { source: "/en/produtos", destination: "/en/produtos/acai", permanent: false },
+    ];
   },
 };
 

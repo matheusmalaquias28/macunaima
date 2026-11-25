@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { onSiteReady } from "@/components/motion/MotionProvider";
+import { useLang } from "@/components/i18n/LangProvider";
 
 const KEY = "mcn-consent";
 export type Consent = "accepted" | "rejected";
@@ -20,6 +20,7 @@ export function getConsent(): Consent | null {
 export default function CookieConsent() {
   const [open, setOpen] = useState(false);
   const [shown, setShown] = useState(false);
+  const en = useLang() === "en";
 
   // Só aparece depois do preloader e se o visitante ainda não escolheu
   useEffect(() => {
@@ -52,15 +53,12 @@ export default function CookieConsent() {
     >
       <p id="cookie-title" className="caption flex items-center gap-3 text-acai-soft">
         <span className="h-px w-5 bg-current opacity-70" />
-        Privacidade · LGPD
+        {en ? "Privacy · LGPD" : "Privacidade · LGPD"}
       </p>
       <p id="cookie-text" className="mt-3 text-[0.9rem] leading-relaxed text-acai-ink/75">
-        Usamos cookies para o funcionamento do site e para entender como ele é utilizado. Você pode aceitar ou recusar os
-        cookies não essenciais. Saiba mais na nossa{" "}
-        <Link href="/politica-de-privacidade" className="font-semibold text-acai underline decoration-acai/30 underline-offset-2 hover:decoration-acai">
-          Política de Privacidade
-        </Link>
-        .
+        {en
+          ? "We use cookies to run the website and to understand how it is used. You can accept or reject non-essential cookies."
+          : "Usamos cookies para o funcionamento do site e para entender como ele é utilizado. Você pode aceitar ou recusar os cookies não essenciais."}
       </p>
       <div className="mt-4 flex gap-2">
         <button
@@ -68,14 +66,14 @@ export default function CookieConsent() {
           onClick={() => decide("rejected")}
           className="h-10 flex-1 rounded-full border border-acai-ink/20 text-sm font-semibold transition-colors hover:border-acai-ink"
         >
-          Recusar
+          {en ? "Reject" : "Recusar"}
         </button>
         <button
           type="button"
           onClick={() => decide("accepted")}
           className="h-10 flex-1 rounded-full bg-acai text-sm font-semibold text-white transition-colors hover:bg-acai-ink"
         >
-          Aceitar
+          {en ? "Accept" : "Aceitar"}
         </button>
       </div>
     </div>

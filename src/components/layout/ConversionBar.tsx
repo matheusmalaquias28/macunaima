@@ -1,9 +1,14 @@
-import Link from "next/link";
-import { contact, whatsappLink } from "@/lib/site";
+"use client";
 
-const whatsappHref = whatsappLink(contact.whatsapp);
+import Link from "next/link";
+import { useLang } from "@/components/i18n/LangProvider";
+import { contact, whatsappLink, whatsappMessage } from "@/lib/site";
+import { lp } from "@/lib/i18n";
 
 export default function ConversionBar() {
+  const lang = useLang();
+  const whatsappHref = whatsappLink(contact.whatsapp, whatsappMessage[lang]);
+  const waLabel = lang === "en" ? "Chat on WhatsApp" : "Falar no WhatsApp";
   return (
     <>
       <div
@@ -12,16 +17,16 @@ export default function ConversionBar() {
       >
         <div className="mx-auto flex max-w-lg items-center gap-2.5">
           <Link
-            href="/contato"
+            href={lp(lang, "/contato")}
             className="flex h-14 min-w-0 flex-1 items-center justify-center rounded-full bg-acai px-6 text-[0.98rem] font-semibold text-white shadow-[0_12px_32px_-12px_rgba(34,1,26,0.55)] transition-colors duration-500 hover:bg-acai-ink"
           >
-            Fazer pedido
+            {lang === "en" ? "Request a B2B quote" : "Pedido no atacado (B2B)"}
           </Link>
           <a
             href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Falar no WhatsApp"
+            aria-label={waLabel}
             className="grid size-12 shrink-0 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_10px_24px_-10px_rgba(18,140,70,0.7)] transition-transform duration-500 hover:scale-105"
           >
             <WhatsAppIcon className="size-6" />
@@ -33,7 +38,7 @@ export default function ConversionBar() {
         href={whatsappHref}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Falar no WhatsApp"
+        aria-label={waLabel}
         className="fixed right-6 bottom-6 z-40 hidden size-14 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_16px_40px_-12px_rgba(18,140,70,0.65)] transition-transform duration-500 hover:scale-105 lg:grid"
       >
         <WhatsAppIcon className="size-7" />

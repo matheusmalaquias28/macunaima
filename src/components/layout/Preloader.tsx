@@ -46,12 +46,12 @@ export default function Preloader() {
       ref={root}
       data-preloader
       aria-hidden="true"
-      className="fixed inset-0 z-[100] grid place-items-center overflow-hidden bg-acai text-white"
+      className="fixed inset-0 z-[100] grid place-items-center overflow-hidden bg-white text-acai"
     >
       <div data-pl-green className="absolute inset-x-0 top-full h-full bg-folha" />
       <div data-pl-inner className="flex w-[min(62vw,340px)] flex-col items-center gap-6">
         <Logo className="w-full" data-pl-logo />
-        <div className="h-px w-full bg-white/15">
+        <div className="h-px w-full bg-acai/15">
           <div data-pl-bar className="h-full origin-left bg-folha" />
         </div>
       </div>
