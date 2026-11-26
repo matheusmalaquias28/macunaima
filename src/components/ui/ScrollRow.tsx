@@ -10,6 +10,7 @@ export default function ScrollRow({ label, children }: { label: string; children
   const scroller = useRef<HTMLDivElement>(null);
   const drag = useRef({ down: false, x: 0, left: 0, moved: false });
   const [edge, setEdge] = useState({ start: true, end: false });
+  const [dragging, setDragging] = useState(false);
 
   useEffect(() => {
     const el = scroller.current;
@@ -57,18 +58,36 @@ export default function ScrollRow({ label, children }: { label: string; children
         onPointerMove={(e) => {
           if (!drag.current.down || !scroller.current) return;
           const dx = e.clientX - drag.current.x;
-          if (Math.abs(dx) > 6) drag.current.moved = true;
+          if (!drag.current.moved && Math.abs(dx) > 6) {
+            // Só vira arraste depois de mexer: um clique simples continua abrindo os botões do card
+            drag.current.moved = true;
+            scroller.current.setPointerCapture(e.pointerId);
+            setDragging(true);
+          }
+          if (!drag.current.moved) return;
           scroller.current.scrollLeft = drag.current.left - dx;
         }}
-        onPointerUp={() => (drag.current.down = false)}
-        onPointerLeave={() => (drag.current.down = false)}
+        onPointerUp={(e) => {
+          if (!drag.current.down) return;
+          drag.current.down = false;
+          if (scroller.current?.hasPointerCapture(e.pointerId)) scroller.current.releasePointerCapture(e.pointerId);
+          setDragging(false);
+        }}
+        onPointerCancel={() => {
+          drag.current.down = false;
+          setDragging(false);
+        }}
+        onDragStart={(e) => e.preventDefault()}
         onClickCapture={(e) => {
           if (!drag.current.moved) return;
           e.preventDefault();
           e.stopPropagation();
           drag.current.moved = false;
         }}
-        className="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain scroll-ps-(--gutter) px-(--gutter) pb-3 *:shrink-0 *:snap-start"
+        data-lenis-prevent-wheel
+        className={`no-scrollbar flex gap-5 overflow-x-auto overscroll-x-contain scroll-ps-(--gutter) px-(--gutter) pb-3 *:shrink-0 *:snap-start [&_img]:pointer-events-none ${
+          dragging ? "cursor-grabbing select-none" : "cursor-grab snap-x snap-mandatory"
+        }`}
       >
         {children}
       </div>

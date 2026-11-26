@@ -7,7 +7,7 @@ export type NavLink = { label: T; href: string; children?: NavLink[] };
 export const productsNav: NavLink[] = [
   { label: { pt: "Açaí", en: "Açaí" }, href: "/produtos/acai" },
   { label: { pt: "Sorvete", en: "Sorbet" }, href: "/produtos/sorvete" },
-  { label: { pt: "Receitas", en: "Recipes" }, href: "/produtos/receitas" },
+  { label: { pt: "Receitas", en: "Recipes" }, href: "/produtos/acai#receitas" },
 ];
 
 export const mainNav: NavLink[] = [
@@ -161,7 +161,7 @@ export const units: Unit[] = [
 ];
 
 // Marca parceira para exportação nos Estados Unidos.
-// [A CONFIRMAR] site e telefone/WhatsApp da Tropical Açaí: os botões só aparecem quando preenchidos.
+// Botões só aparecem quando o campo está preenchido. Telefone nos EUA (ligação, não WhatsApp).
 export const tropicalAcai = {
   name: "Tropical Açaí",
   kind: { pt: "Exportação · Estados Unidos", en: "Export · United States" },
@@ -169,8 +169,9 @@ export const tropicalAcai = {
     pt: "Marca da Macunaíma para o mercado norte-americano. Contato direto para importadores e distribuidores nos EUA.",
     en: "Macunaíma's brand for the North American market. Direct contact for importers and distributors in the USA.",
   },
-  url: "",
-  phone: "",
+  url: "https://www.tropicalacai.com/contact-us/",
+  phone: "(321) 945-0700",
+  phoneIntl: "+13219450700",
   email: "",
 };
 

@@ -8,7 +8,6 @@ const pages: { path: string; priority: number }[] = [
   { path: "/quem-somos", priority: 0.8 },
   { path: "/produtos/acai", priority: 0.9 },
   { path: "/produtos/sorvete", priority: 0.9 },
-  { path: "/produtos/receitas", priority: 0.6 },
   { path: "/onde-nos-encontrar", priority: 0.7 },
   { path: "/contato", priority: 0.8 },
 ];

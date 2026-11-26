@@ -30,6 +30,9 @@ const nextConfig: NextConfig = {
       // "Produtos" abre a Linha Açaí (o menu tem Açaí, Sorvete e Receitas)
       { source: "/produtos", destination: "/produtos/acai", permanent: false },
       { source: "/en/produtos", destination: "/en/produtos/acai", permanent: false },
+      // Receitas agora ficam dentro da página do Açaí
+      { source: "/produtos/receitas", destination: "/produtos/acai#receitas", permanent: true },
+      { source: "/en/produtos/receitas", destination: "/en/produtos/acai#receitas", permanent: true },
     ];
   },
 };
